@@ -15,36 +15,86 @@ import streamlit as st
 # ── Page config ────────────────────────────────────────────────────────────────
 
 st.set_page_config(
-    page_title="Element Human — Finance",
-    page_icon="📊",
+    page_title="Element Human Finance",
+    page_icon="💚",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-# ── Styling ────────────────────────────────────────────────────────────────────
+# ── Brand styling ──────────────────────────────────────────────────────────────
 
 st.markdown("""
 <style>
-    .section-header {
-        font-size: 17px;
-        font-weight: 600;
-        color: #1a1a2e;
-        margin: 28px 0 12px 0;
-        padding-bottom: 8px;
-        border-bottom: 1px solid #e9ecef;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    html, body, [class*="css"], [data-testid], div, span, p, label, h1, h2, h3,
+    input, select, textarea, button {
+        font-family: 'Poppins', sans-serif !important;
     }
-    [data-testid="stSidebar"] { background: #1a1a2e; }
-    [data-testid="stSidebar"] * { color: #fff !important; }
+
+    h1 { color: #13202F !important; font-weight: 700 !important; }
+    h2 { color: #13202F !important; font-weight: 600 !important; }
+
+    .section-header {
+        font-size: 14px;
+        font-weight: 600;
+        color: #13202F;
+        margin: 24px 0 12px 0;
+        padding: 8px 14px;
+        border-left: 4px solid #10A8B7;
+        background: #f4f7f9;
+        border-radius: 0 6px 6px 0;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+    }
+
+    [data-testid="stSidebar"] {
+        background: #13202F !important;
+    }
+    [data-testid="stSidebar"] * {
+        color: #fff !important;
+    }
     [data-testid="stSidebar"] input {
-        color: #1a1a2e !important;
+        color: #13202F !important;
         background: #fff !important;
     }
-    [data-testid="stSidebar"] [data-baseweb="input"] input,
-    [data-testid="stSidebar"] [data-baseweb="select"] div {
-        color: #1a1a2e !important;
+    [data-testid="stSidebar"] [data-baseweb="select"] div,
+    [data-testid="stSidebar"] [data-baseweb="select"] span {
+        color: #13202F !important;
+    }
+
+    [data-testid="metric-container"] {
+        background: #f4f7f9;
+        border-radius: 8px;
+        padding: 12px 16px !important;
+        border-top: 3px solid #10A8B7;
+    }
+
+    [data-testid="stDataFrame"] {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    div[data-testid="stHorizontalBlock"] > div {
+        gap: 12px;
     }
 </style>
 """, unsafe_allow_html=True)
+
+
+# ── Brand colours ──────────────────────────────────────────────────────────────
+
+EH_TEAL    = "#10A8B7"
+EH_GREEN   = "#54E42B"
+EH_PINK    = "#FF2198"
+EH_YELLOW  = "#F9BE00"
+EH_BLUE    = "#007AFF"
+EH_PURPLE  = "#8F21A1"
+EH_RED     = "#F60000"
+EH_NAVY    = "#13202F"
+EH_INDIGO  = "#1818CE"
+
+EH_PALETTE = [EH_TEAL, EH_GREEN, EH_PINK, EH_YELLOW, EH_BLUE, EH_PURPLE, EH_RED, EH_NAVY, EH_INDIGO]
 
 
 # ── Constants ──────────────────────────────────────────────────────────────────
@@ -146,52 +196,49 @@ def load_data():
         p = DATA_DIR / filename
         return json.loads(p.read_text()) if p.exists() else []
 
-    ehl_inv = read("ehl_invoices.json")
+    ehl_inv  = read("ehl_invoices.json")
     ehrl_inv = read("ehrl_invoices.json")
     ehgl_inv = read("ehgl_invoices.json")
-    ehl_jnl = read("ehl_journals.json")
+    ehl_jnl  = read("ehl_journals.json")
     ehrl_jnl = read("ehrl_journals.json")
     ehgl_jnl = read("ehgl_journals.json")
-    tb_raw = read("tb_snapshots.json")
+    tb_raw   = read("tb_snapshots.json")
 
     meta_path = DATA_DIR / "metadata.json"
     metadata = json.loads(meta_path.read_text()) if meta_path.exists() else {}
 
-    # ── Invoices ──
+    # Invoices
     all_inv = ehl_inv + ehrl_inv + ehgl_inv
     df_inv = pd.DataFrame(all_inv) if all_inv else pd.DataFrame()
-
     if not df_inv.empty:
-        df_inv["date"] = pd.to_datetime(df_inv["date"], errors="coerce")
-        df_inv["paid_date"] = pd.to_datetime(df_inv["paid_date"], errors="coerce")
-        df_inv["month"] = pd.to_datetime(df_inv["month"], errors="coerce")
-        df_inv["net"] = pd.to_numeric(df_inv["net"], errors="coerce").fillna(0)
-        df_inv["gross"] = pd.to_numeric(df_inv["gross"], errors="coerce").fillna(0)
-        df_inv["tax"] = pd.to_numeric(df_inv["tax"], errors="coerce").fillna(0)
-        df_inv["client"] = df_inv.apply(_resolve_client_invoice, axis=1)
+        df_inv["date"]     = pd.to_datetime(df_inv["date"], errors="coerce")
+        df_inv["paid_date"]= pd.to_datetime(df_inv["paid_date"], errors="coerce")
+        df_inv["month"]    = pd.to_datetime(df_inv["month"], errors="coerce")
+        df_inv["net"]      = pd.to_numeric(df_inv["net"], errors="coerce").fillna(0)
+        df_inv["gross"]    = pd.to_numeric(df_inv["gross"], errors="coerce").fillna(0)
+        df_inv["tax"]      = pd.to_numeric(df_inv["tax"], errors="coerce").fillna(0)
+        df_inv["client"]   = df_inv.apply(_resolve_client_invoice, axis=1)
         df_inv["category"] = df_inv["client"].map(CATEGORIES).fillna("Other")
         df_inv["revenue_type"] = df_inv["account_code"].map(REVENUE_CODE_NAMES).fillna("Other")
-        df_inv["is_revenue"] = df_inv["account_code"].isin(REVENUE_CODES)
+        df_inv["is_revenue"]   = df_inv["account_code"].isin(REVENUE_CODES)
 
-    # ── Journals (recognised revenue) ──
+    # Journals (recognised revenue)
     all_jnl = ehl_jnl + ehrl_jnl + ehgl_jnl
     df_jnl = pd.DataFrame(all_jnl) if all_jnl else pd.DataFrame()
-
     if not df_jnl.empty:
-        df_jnl["date"] = pd.to_datetime(df_jnl["date"], errors="coerce")
+        df_jnl["date"]  = pd.to_datetime(df_jnl["date"], errors="coerce")
         df_jnl["month"] = pd.to_datetime(df_jnl["month"], errors="coerce")
-        df_jnl["net"] = pd.to_numeric(df_jnl["net"], errors="coerce").fillna(0)
+        df_jnl["net"]   = pd.to_numeric(df_jnl["net"], errors="coerce").fillna(0)
         df_jnl["client"] = df_jnl["function"].map(CLIENT_CODES).fillna(
             df_jnl["contact"].apply(_resolve_client_contact)
         )
-        df_jnl["category"] = df_jnl["client"].map(CATEGORIES).fillna("Other")
+        df_jnl["category"]     = df_jnl["client"].map(CATEGORIES).fillna("Other")
         df_jnl["revenue_type"] = df_jnl["account_code"].map(REVENUE_CODE_NAMES).fillna("Other")
 
-    # ── Trial balance snapshots ──
+    # Trial balance snapshots
     df_tb = pd.DataFrame(tb_raw) if tb_raw else pd.DataFrame()
-
     if not df_tb.empty:
-        df_tb["date"] = pd.to_datetime(df_tb["date"], errors="coerce")
+        df_tb["date"]  = pd.to_datetime(df_tb["date"], errors="coerce")
         df_tb["month"] = pd.to_datetime(df_tb["month"], errors="coerce")
         df_tb["account_250_balance"] = pd.to_numeric(
             df_tb["account_250_balance"], errors="coerce"
@@ -220,7 +267,7 @@ def _resolve_client_contact(contact: str) -> str:
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
-def fmt_gbp(value):
+def fmt_gbp(value) -> str:
     if value is None:
         return "—"
     v = abs(value)
@@ -234,43 +281,38 @@ def fmt_gbp(value):
     return f"{sign}£{v:,.0f}"
 
 
-def fmt_pct(value):
+def fmt_pct(value) -> str:
     if value is None or value != value:
         return "—"
     return f"{value*100:+.1f}%"
 
 
 def date_filter(key_prefix: str) -> tuple[pd.Timestamp, pd.Timestamp]:
-    """Month/year range picker. Returns (from_dt, to_dt) as timestamps."""
     today = date.today()
-    default_to_month_idx = today.month - 1
-    default_to_year_idx = _YEARS.index(today.year) if today.year in _YEARS else len(_YEARS) - 1
+    default_to_m = today.month - 1
+    default_to_y = _YEARS.index(today.year) if today.year in _YEARS else len(_YEARS) - 1
 
     col_from, col_to = st.columns(2)
-
     with col_from:
         st.caption("From")
         c1, c2 = st.columns(2)
         from_month = c1.selectbox("Month", _MONTHS, index=0,
                                   key=f"{key_prefix}_from_m", label_visibility="collapsed")
-        from_year = c2.selectbox("Year", _YEARS, index=0,
-                                 key=f"{key_prefix}_from_y", label_visibility="collapsed")
-
+        from_year  = c2.selectbox("Year",  _YEARS, index=0,
+                                  key=f"{key_prefix}_from_y", label_visibility="collapsed")
     with col_to:
         st.caption("To")
         c3, c4 = st.columns(2)
-        to_month = c3.selectbox("Month", _MONTHS, index=default_to_month_idx,
+        to_month = c3.selectbox("Month", _MONTHS, index=default_to_m,
                                 key=f"{key_prefix}_to_m", label_visibility="collapsed")
-        to_year = c4.selectbox("Year", _YEARS, index=default_to_year_idx,
-                               key=f"{key_prefix}_to_y", label_visibility="collapsed")
+        to_year  = c4.selectbox("Year",  _YEARS, index=default_to_y,
+                                key=f"{key_prefix}_to_y", label_visibility="collapsed")
 
-    from_month_num = _MONTHS.index(from_month) + 1
-    to_month_num = _MONTHS.index(to_month) + 1
-    last_day = _cal.monthrange(to_year, to_month_num)[1]
-
+    fm = _MONTHS.index(from_month) + 1
+    tm = _MONTHS.index(to_month) + 1
     return (
-        pd.Timestamp(date(from_year, from_month_num, 1)),
-        pd.Timestamp(date(to_year, to_month_num, last_day)),
+        pd.Timestamp(date(from_year, fm, 1)),
+        pd.Timestamp(date(to_year, tm, _cal.monthrange(to_year, tm)[1])),
     )
 
 
@@ -286,25 +328,54 @@ def whalar_ttm_mask(df: pd.DataFrame, today: date | None = None) -> pd.Series:
     return pd.Series(True, index=df.index)
 
 
-def entity_kpis(label: str, df: pd.DataFrame, entity_filter: list, value_col: str = "net") -> None:
+def entity_kpis(label: str, df: pd.DataFrame, entities: list, value_col: str = "net") -> None:
     section(label)
-    cols = st.columns(len(entity_filter) + 1)
+    cols = st.columns(len(entities) + 1)
     cols[0].metric("Total", fmt_gbp(df[value_col].sum()))
-    for i, entity in enumerate(entity_filter):
-        val = df[df["entity"] == entity][value_col].sum()
-        cols[i + 1].metric(entity, fmt_gbp(val))
+    for i, e in enumerate(entities):
+        cols[i + 1].metric(e, fmt_gbp(df[df["entity"] == e][value_col].sum()))
 
 
-def _latest_tb_balance(df_tb: pd.DataFrame, entity_filter: list, col: str, to_dt: pd.Timestamp) -> float:
-    """Sum the most recent per-entity balance for a TB account column."""
-    if df_tb.empty:
+def invoice_kpis(label: str, df: pd.DataFrame, entities: list) -> None:
+    """Show Invoices Raised split by Net / Tax / Gross across entities."""
+    section(label)
+    if df.empty:
+        st.caption("No invoice data for selected filters.")
+        return
+    col_labels = ["Total"] + list(entities)
+    data = {}
+    for metric, col in [("Net", "net"), ("Tax", "tax"), ("Gross", "gross")]:
+        data[metric] = [fmt_gbp(df[col].sum())] + [
+            fmt_gbp(df[df["entity"] == e][col].sum()) for e in entities
+        ]
+    df_disp = pd.DataFrame(data, index=col_labels).T
+    st.dataframe(df_disp, use_container_width=True)
+
+
+def tb_kpis(label: str, df_tb: pd.DataFrame, entities: list, col: str, to_dt: pd.Timestamp) -> None:
+    """Show a TB balance (e.g. deferred/accrued) total and per entity."""
+    section(label)
+    cols = st.columns(len(entities) + 1)
+    total = 0.0
+    by_entity = {}
+    for e in entities:
+        v = _latest_tb_balance(df_tb, [e], col, to_dt)
+        by_entity[e] = v
+        total += v
+    cols[0].metric("Total", fmt_gbp(total))
+    for i, e in enumerate(entities):
+        cols[i + 1].metric(e, fmt_gbp(by_entity[e]))
+
+
+def _latest_tb_balance(df_tb: pd.DataFrame, entities: list, col: str, to_dt: pd.Timestamp) -> float:
+    if df_tb.empty or not entities:
         return 0.0
-    tb_f = df_tb[df_tb["entity"].isin(entity_filter)]
+    tb_f = df_tb[df_tb["entity"].isin(entities)]
     tb_at_end = tb_f[tb_f["date"] <= to_dt]
     if tb_at_end.empty:
         return 0.0
     latest_idx = tb_at_end.groupby("entity")["date"].idxmax()
-    return tb_at_end.loc[latest_idx, col].sum()
+    return float(df_tb.loc[latest_idx, col].sum())
 
 
 # ── Load data ──────────────────────────────────────────────────────────────────
@@ -315,7 +386,14 @@ data_exists = not df_inv.empty or not df_jnl.empty
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 
 with st.sidebar:
-    st.markdown("## 📊 Finance Dashboard")
+    st.markdown(
+        "<div style='padding:16px 0 4px 0;'>"
+        "<span style='font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.5px;'>"
+        "Element Human</span><br>"
+        "<span style='font-size:11px;color:#10A8B7;font-weight:400;letter-spacing:1px;'>"
+        "FINANCE DASHBOARD</span></div>",
+        unsafe_allow_html=True,
+    )
     st.markdown("---")
 
     page = st.radio(
@@ -325,24 +403,35 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.markdown("**Entity**")
-    entity_filter = st.multiselect(
+    st.markdown(
+        "<span style='font-size:12px;font-weight:600;letter-spacing:0.5px;'>ENTITY</span>",
+        unsafe_allow_html=True,
+    )
+    entity_filter = st.pills(
         "Entity",
         options=ALL_ENTITIES,
-        default=["EHL", "EHRL"],
+        default=ALL_ENTITIES,
+        selection_mode="multi",
         label_visibility="collapsed",
     )
+    if not entity_filter:
+        entity_filter = ALL_ENTITIES
 
     st.markdown("---")
     st.checkbox("Full numbers", key="full_numbers", value=False)
 
     st.markdown("---")
     if metadata:
-        st.markdown(f"**Last refreshed**\n\n{metadata.get('last_refreshed', '—')}")
+        st.markdown(
+            f"<span style='font-size:11px;color:#aaa;'>Last refreshed</span><br>"
+            f"<span style='font-size:11px;'>{metadata.get('last_refreshed', '—')}</span>",
+            unsafe_allow_html=True,
+        )
     else:
-        st.markdown("*No data loaded yet.*")
+        st.markdown("<span style='font-size:11px;color:#aaa;'>No data loaded yet.</span>",
+                    unsafe_allow_html=True)
 
-# ── No data ────────────────────────────────────────────────────────────────────
+# ── No data guard ──────────────────────────────────────────────────────────────
 
 if not data_exists:
     st.title("Element Human — Finance Dashboard")
@@ -350,10 +439,6 @@ if not data_exists:
         "**No data loaded yet.**\n\n"
         "Run the data refresh workflow in GitHub Actions to populate this dashboard."
     )
-    st.stop()
-
-if not entity_filter:
-    st.warning("Select at least one entity in the sidebar.")
     st.stop()
 
 
@@ -378,49 +463,25 @@ if page == "Summary":
         (df_jnl["entity"].isin(entity_filter))
     ].copy() if not df_jnl.empty else pd.DataFrame()
 
-    deferred_total = _latest_tb_balance(df_tb, entity_filter, "account_250_balance", to_dt)
-    accrued_total = _latest_tb_balance(df_tb, entity_filter, "account_115_balance", to_dt)
+    # Invoices Raised — all receivable invoice lines, Net/Tax/Gross table
+    invoice_kpis("Invoices Raised", df_inv_f, entity_filter)
 
-    # ── KPI rows ──
-    if not df_inv_f.empty:
-        entity_kpis("Invoices Raised", df_inv_f[df_inv_f["is_revenue"]], entity_filter)
-    else:
-        section("Invoices Raised")
-        st.caption("No invoice data for selected filters.")
-
+    # Recognised Revenue — single net figure per entity
     if not df_jnl_f.empty:
         entity_kpis("Recognised Revenue", df_jnl_f, entity_filter)
     else:
         section("Recognised Revenue")
         st.caption("No recognised revenue data for selected filters.")
 
-    # ── Balance sheet balances ──
-    section("Balance Sheet (as at period end)")
-    bs_cols = st.columns(len(entity_filter) + 1)
-
-    # Deferred revenue (250) — per entity
-    def_by_entity = {
-        e: _latest_tb_balance(df_tb, [e], "account_250_balance", to_dt)
-        for e in entity_filter
-    }
-    acc_by_entity = {
-        e: _latest_tb_balance(df_tb, [e], "account_115_balance", to_dt)
-        for e in entity_filter
-    }
-
-    row_def_cols = st.columns(len(entity_filter) + 1)
-    row_def_cols[0].metric("Deferred Revenue (250)", fmt_gbp(deferred_total))
-    for i, e in enumerate(entity_filter):
-        row_def_cols[i + 1].metric(e, fmt_gbp(def_by_entity[e]))
-
-    row_acc_cols = st.columns(len(entity_filter) + 1)
-    row_acc_cols[0].metric("Accrued Revenue (115)", fmt_gbp(accrued_total))
-    for i, e in enumerate(entity_filter):
-        row_acc_cols[i + 1].metric(e, fmt_gbp(acc_by_entity[e]))
+    # Balance sheet balances
+    tb_kpis("Deferred Revenue — 250 Income in Advance (as at period end)",
+            df_tb, entity_filter, "account_250_balance", to_dt)
+    tb_kpis("Accrued Revenue — 115 (as at period end)",
+            df_tb, entity_filter, "account_115_balance", to_dt)
 
     st.markdown("---")
 
-    # ── Charts ──
+    # Charts
     if not df_jnl_f.empty:
         col_l, col_r = st.columns(2)
 
@@ -429,10 +490,11 @@ if page == "Summary":
             entity_rev = df_jnl_f.groupby("entity")["net"].sum().reset_index()
             fig = px.pie(
                 entity_rev, values="net", names="entity",
-                color_discrete_sequence=["#1a1a2e", "#e94560", "#4a90d9"], hole=0.4,
+                color_discrete_sequence=EH_PALETTE, hole=0.4,
             )
             fig.update_traces(texttemplate="%{label}<br>%{percent}")
-            fig.update_layout(showlegend=False, margin=dict(t=20, b=20))
+            fig.update_layout(showlegend=False, margin=dict(t=20, b=20),
+                              font=dict(family="Poppins"))
             st.plotly_chart(fig, use_container_width=True)
 
         with col_r:
@@ -441,18 +503,20 @@ if page == "Summary":
             type_rev = type_rev.sort_values("net", ascending=False)
             fig = px.bar(
                 type_rev, x="revenue_type", y="net",
-                color_discrete_sequence=["#1a1a2e"], text_auto=".3s",
+                color_discrete_sequence=[EH_TEAL], text_auto=".3s",
             )
-            fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20))
+            fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20),
+                              font=dict(family="Poppins"))
             st.plotly_chart(fig, use_container_width=True)
 
         section("Recognised Revenue by Category")
         cat_rev = df_jnl_f.groupby("category")["net"].sum().reset_index().sort_values("net")
         fig = px.bar(
             cat_rev, x="net", y="category", orientation="h",
-            color_discrete_sequence=["#e94560"], text_auto=".3s",
+            color_discrete_sequence=[EH_PINK], text_auto=".3s",
         )
-        fig.update_layout(xaxis_title="£", yaxis_title="", margin=dict(t=20, b=20))
+        fig.update_layout(xaxis_title="£", yaxis_title="", margin=dict(t=20, b=20),
+                          font=dict(family="Poppins"))
         st.plotly_chart(fig, use_container_width=True)
 
 
@@ -479,7 +543,7 @@ elif page == "Monthly Revenue":
         st.warning("No recognised revenue data for the selected filters.")
         st.stop()
 
-    # ── Monthly total ──
+    # Monthly total bar
     monthly = (
         df_jnl_f.dropna(subset=["month"])
         .groupby(df_jnl_f["month"].dt.to_period("M"))["net"]
@@ -494,42 +558,41 @@ elif page == "Monthly Revenue":
 
     fig = px.bar(
         monthly, x="month", y="net",
-        color_discrete_sequence=["#1a1a2e"],
+        color_discrete_sequence=[EH_TEAL],
         labels={"net": "£", "month": "Month"}, text_auto=".3s",
     )
     fig.update_layout(
         title="Monthly Recognised Revenue",
         xaxis_title="", yaxis_title="£", margin=dict(t=40, b=20),
+        font=dict(family="Poppins"),
     )
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
 
-    # ── Rolling metrics (Whalar excluded from TTM until July 2026) ──
+    # Rolling metrics (Whalar excluded from TTM until July 2026)
     months_idx = monthly.set_index("month")["net"]
     latest = monthly["month"].max()
 
     whalar_mask = whalar_ttm_mask(df_jnl_f)
-    df_ttm_base = df_jnl_f[whalar_mask].copy()
     ttm_monthly = (
-        df_ttm_base.groupby(df_ttm_base["month"].dt.to_period("M"))["net"]
+        df_jnl_f[whalar_mask]
+        .groupby(df_jnl_f["month"].dt.to_period("M"))["net"]
         .sum().reset_index()
     )
     ttm_monthly["month"] = ttm_monthly["month"].dt.to_timestamp()
     ttm_idx = ttm_monthly.set_index("month")["net"]
 
     def rolling(idx, months_back, ref=latest):
-        cutoff = ref - pd.DateOffset(months=months_back)
-        return idx[idx.index > cutoff].sum()
+        return idx[idx.index > ref - pd.DateOffset(months=months_back)].sum()
 
     def prior_rolling(idx, months_back, ref=latest):
         end = ref - pd.DateOffset(months=months_back)
-        start = end - pd.DateOffset(months=months_back)
-        return idx[(idx.index > start) & (idx.index <= end)].sum()
+        return idx[(idx.index > end - pd.DateOffset(months=months_back)) & (idx.index <= end)].sum()
 
-    ttm = rolling(ttm_idx, 12)
-    t6m = rolling(months_idx, 6)
-    t3m = rolling(months_idx, 3)
+    ttm   = rolling(ttm_idx, 12)
+    t6m   = rolling(months_idx, 6)
+    t3m   = rolling(months_idx, 3)
     p_ttm = prior_rolling(ttm_idx, 12)
     p_t6m = prior_rolling(months_idx, 6)
     p_t3m = prior_rolling(months_idx, 3)
@@ -547,43 +610,39 @@ elif page == "Monthly Revenue":
 
     st.markdown("---")
 
-    # ── Monthly by client heatmap ──
+    # Monthly by client heatmap
     section("Monthly Recognised Revenue by Client")
-
     monthly_client = (
         df_jnl_f.groupby([df_jnl_f["month"].dt.to_period("M"), "client"])["net"]
         .sum().reset_index()
     )
     monthly_client["month"] = monthly_client["month"].dt.to_timestamp()
-
     pivot = monthly_client.pivot_table(
         index="client", columns="month", values="net", aggfunc="sum", fill_value=0,
     )
     pivot["Total"] = pivot.sum(axis=1)
     pivot = pivot.sort_values("Total", ascending=False).drop(columns="Total")
     pivot.columns = [pd.Timestamp(c).strftime("%b %y") for c in pivot.columns]
-
     pivot.loc["TOTAL"] = pivot.sum(axis=0)
-    display_pivot = pivot.map(lambda x: fmt_gbp(x) if x != 0 else "—")
-    st.dataframe(display_pivot, use_container_width=True)
+    st.dataframe(pivot.map(lambda x: fmt_gbp(x) if x != 0 else "—"), use_container_width=True)
 
     st.markdown("---")
 
-    # ── Revenue by type over time ──
+    # Revenue by type stacked bar
     section("Recognised Revenue by Type Over Time")
-
     monthly_type = (
         df_jnl_f.groupby([df_jnl_f["month"].dt.to_period("M"), "revenue_type"])["net"]
         .sum().reset_index()
     )
     monthly_type["month"] = monthly_type["month"].dt.to_timestamp()
     monthly_type = monthly_type.sort_values("month")
-
     fig = px.bar(
         monthly_type, x="month", y="net", color="revenue_type",
+        color_discrete_sequence=EH_PALETTE,
         labels={"net": "£", "month": "Month", "revenue_type": "Type"}, barmode="stack",
     )
-    fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20))
+    fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20),
+                      font=dict(family="Poppins"))
     st.plotly_chart(fig, use_container_width=True)
 
 
@@ -611,7 +670,6 @@ elif page == "Invoice Detail":
         st.warning("No invoice data for the selected filters.")
         st.stop()
 
-    # ── Filters ──
     c1, c2, c3 = st.columns(3)
     with c1:
         account_opts = sorted(df_inv_f["account_code"].dropna().unique())
@@ -623,15 +681,11 @@ elif page == "Invoice Detail":
         client_opts = sorted(df_inv_f["client"].dropna().unique())
         selected_clients = st.multiselect("Client", client_opts, default=[])
 
-    mask = (
-        df_inv_f["account_code"].isin(selected_codes) &
-        df_inv_f["status"].isin(selected_status)
-    )
+    mask = df_inv_f["account_code"].isin(selected_codes) & df_inv_f["status"].isin(selected_status)
     if selected_clients:
         mask &= df_inv_f["client"].isin(selected_clients)
     df_inv_f = df_inv_f[mask]
 
-    # ── KPIs ──
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Invoices", f"{df_inv_f['invoice_number'].nunique():,}")
     c2.metric("Total Net", fmt_gbp(df_inv_f["net"].sum()))
@@ -640,9 +694,7 @@ elif page == "Invoice Detail":
 
     st.markdown("---")
 
-    # ── Monthly by client chart ──
     section("Invoiced Revenue by Client by Month")
-
     monthly_client = (
         df_inv_f[df_inv_f["is_revenue"]]
         .groupby([df_inv_f["month"].dt.to_period("M"), "client"])["net"]
@@ -650,43 +702,38 @@ elif page == "Invoice Detail":
     )
     monthly_client["month"] = monthly_client["month"].dt.to_timestamp()
     monthly_client = monthly_client.sort_values("month")
-
     if not monthly_client.empty:
         fig = px.bar(
             monthly_client, x="month", y="net", color="client",
+            color_discrete_sequence=EH_PALETTE,
             labels={"net": "£", "month": "Month", "client": "Client"}, barmode="stack",
         )
-        fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20))
+        fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20),
+                          font=dict(family="Poppins"))
         st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
-
-    # ── Table ──
     section("Invoice Lines")
 
     display_cols = [
         "entity", "invoice_number", "type", "contact", "client", "date", "paid_date",
-        "account_code", "account_name", "description",
-        "net", "tax", "gross", "status",
+        "account_code", "account_name", "description", "net", "tax", "gross", "status",
     ]
     df_table = df_inv_f[display_cols].copy()
-    df_table["date"] = df_table["date"].dt.strftime("%d %b %Y")
+    df_table["date"]      = df_table["date"].dt.strftime("%d %b %Y")
     df_table["paid_date"] = df_table["paid_date"].dt.strftime("%d %b %Y").fillna("—")
     for col in ["net", "tax", "gross"]:
         df_table[col] = df_table[col].apply(lambda x: f"£{x:,.2f}")
-
     df_table.columns = [
         "Entity", "Invoice", "Type", "Contact", "Client", "Date", "Paid Date",
-        "Code", "Account", "Description",
-        "Net", "Tax", "Gross", "Status",
+        "Code", "Account", "Description", "Net", "Tax", "Gross", "Status",
     ]
     st.dataframe(df_table, use_container_width=True, hide_index=True, height=500)
 
     csv = df_inv_f[display_cols].to_csv(index=False)
-    st.download_button(
-        "Download CSV", data=csv,
-        file_name=f"eh_invoices_{date.today().isoformat()}.csv", mime="text/csv",
-    )
+    st.download_button("Download CSV", data=csv,
+                       file_name=f"eh_invoices_{date.today().isoformat()}.csv",
+                       mime="text/csv")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -713,7 +760,6 @@ elif page == "Account Transactions":
         st.warning("No data for the selected filters.")
         st.stop()
 
-    # ── Filters ──
     c1, c2, c3 = st.columns(3)
     with c1:
         code_opts = sorted(df_jnl_f["account_code"].dropna().unique())
@@ -725,15 +771,11 @@ elif page == "Account Transactions":
         client_opts = sorted(df_jnl_f["client"].dropna().unique())
         selected_clients = st.multiselect("Client", client_opts, default=[])
 
-    mask = (
-        df_jnl_f["account_code"].isin(selected_codes) &
-        df_jnl_f["source"].isin(selected_sources)
-    )
+    mask = df_jnl_f["account_code"].isin(selected_codes) & df_jnl_f["source"].isin(selected_sources)
     if selected_clients:
         mask &= df_jnl_f["client"].isin(selected_clients)
     df_jnl_f = df_jnl_f[mask]
 
-    # ── KPIs ──
     c1, c2, c3 = st.columns(3)
     c1.metric("Transaction lines", f"{len(df_jnl_f):,}")
     c2.metric("Total Net", fmt_gbp(df_jnl_f["net"].sum()))
@@ -741,22 +783,21 @@ elif page == "Account Transactions":
 
     st.markdown("---")
 
-    # ── By account chart ──
     by_code = (
         df_jnl_f.groupby(["account_code", "revenue_type"])["net"]
         .sum().reset_index().sort_values("net", ascending=False)
     )
     fig = px.bar(
         by_code, x="revenue_type", y="net", color="account_code",
+        color_discrete_sequence=EH_PALETTE,
         labels={"net": "£", "revenue_type": "Account", "account_code": "Code"},
         barmode="group", text_auto=".3s",
     )
-    fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20))
+    fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20),
+                      font=dict(family="Poppins"))
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
-
-    # ── Table ──
     section("Transaction Lines")
 
     display_cols = [
@@ -764,10 +805,10 @@ elif page == "Account Transactions":
         "source", "description", "net", "tax", "status",
     ]
     df_table = df_jnl_f[display_cols].copy()
-    df_table["date"] = df_table["date"].dt.strftime("%d %b %Y")
+    df_table["date"]  = df_table["date"].dt.strftime("%d %b %Y")
     df_table["month"] = df_table["month"].dt.strftime("%b %Y")
-    df_table["net"] = df_table["net"].apply(lambda x: f"£{x:,.2f}")
-    df_table["tax"] = df_table["tax"].apply(lambda x: f"£{x:,.2f}")
+    df_table["net"]   = df_table["net"].apply(lambda x: f"£{x:,.2f}")
+    df_table["tax"]   = df_table["tax"].apply(lambda x: f"£{x:,.2f}")
     df_table.columns = [
         "Entity", "Date", "Month", "Client", "Code", "Account",
         "Source", "Description", "Net", "Tax", "Status",
