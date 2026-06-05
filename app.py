@@ -65,6 +65,15 @@ st.markdown("""
     [data-testid="stSidebar"] * {
         color: #fff !important;
     }
+    [data-testid="stSidebar"] input {
+        color: #1a1a2e !important;
+        background: #fff !important;
+    }
+    [data-testid="stSidebar"] [data-baseweb="input"] input,
+    [data-testid="stSidebar"] [data-baseweb="datepicker"] input {
+        color: #1a1a2e !important;
+        background: #fff !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
