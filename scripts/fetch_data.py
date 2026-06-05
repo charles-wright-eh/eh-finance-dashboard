@@ -154,13 +154,15 @@ def xero_get(access_token, tenant_id, endpoint, params=None):
 
 
 def serial_to_date(serial):
-    """Convert a Xero /Date(timestamp)/ value to ISO date string."""
+    """Convert a Xero date value to ISO date string (YYYY-MM-DD)."""
     if serial is None:
         return None
     try:
         if isinstance(serial, str) and serial.startswith("/Date("):
             ms = int(serial[6:-2].split("+")[0].split("-")[0])
             return datetime.utcfromtimestamp(ms / 1000).strftime("%Y-%m-%d")
+        if isinstance(serial, str) and "T" in serial:
+            return serial.split("T")[0]
         return str(serial)
     except Exception:
         return str(serial)
@@ -205,21 +207,37 @@ def fetch_invoices(access_token, tenant_name, tenant_id):
         inv_date = serial_to_date(inv.get("DateString") or inv.get("Date"))
         paid_date = serial_to_date(inv.get("FullyPaidOnDate"))
 
-        tracking = inv.get("TrackingCategories", []) or []
-        function_val = ""
-        subfunction_val = ""
-        for t in tracking:
+        # Invoice-level tracking (fallback)
+        inv_tracking = inv.get("TrackingCategories", []) or []
+        inv_function = ""
+        for t in inv_tracking:
             name = t.get("Name", "")
-            option = t.get("Option", "")
             if "function" in name.lower() and "sub" not in name.lower():
-                function_val = option
-            elif "sub" in name.lower():
-                subfunction_val = option
+                inv_function = t.get("Option", "")
+
+        # Reference field as last resort
+        reference = inv.get("Reference", "") or ""
 
         for line in inv.get("LineItems", []):
             account_str = line.get("AccountCode", "")
             if isinstance(account_str, dict):
                 account_str = account_str.get("Code", "")
+
+            # Line-item tracking takes priority over invoice-level
+            function_val = ""
+            subfunction_val = ""
+            for t in (line.get("Tracking", []) or []):
+                name = t.get("Name", "")
+                option = t.get("Option", "")
+                if "function" in name.lower() and "sub" not in name.lower():
+                    function_val = option
+                elif "sub" in name.lower():
+                    subfunction_val = option
+
+            if not function_val:
+                function_val = inv_function
+            if not function_val:
+                function_val = reference
 
             net = line.get("LineAmount", 0) or 0
             tax = line.get("TaxAmount", 0) or 0
