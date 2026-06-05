@@ -152,6 +152,37 @@ CATEGORIES = {
     "Whalar": "Agency",
 }
 
+CONTACT_MAP = {
+    "BEN Group": "BenLabs",
+    "Harris Poll": "Bera",
+    "DMG Media": "MailOnline",
+    "Fresh Tape": "Fresh Tape",
+    "Billion Dollar Boy": "Billion Dollar Boy",
+    "Netflix": "Netflix",
+    "Amazon": "Amazon",
+    "BBC": "BBC",
+    "Whalar": "Whalar",
+    "Teads": "Teads",
+    "Captiv8": "Captiv8",
+    "Influencer": "Influencer",
+    "Notion": "Notion",
+    "Gaggl": "Gaggl",
+    "Ogilvy": "Ogilvy",
+    "Outbrain": "Outbrain",
+    "Daivid": "Daivid",
+    "Dentsu": "Dentsu",
+    "Creo": "Creo",
+    "Collectively": "Collectively",
+    "Nebula": "Nebula",
+    "Hinge": "Hinge",
+    "Hello Fresh": "Hello Fresh",
+    "HelloFresh": "Hello Fresh",
+    "Unilever": "Unilever",
+    "Mail Media": "Mail Media",
+    "C4": "C4",
+    "Channel 4": "C4",
+}
+
 REVENUE_ACCOUNT_NAMES = {
     "401": "Recurring",
     "402": "License",
@@ -199,10 +230,16 @@ def load_data():
         df_inv["month"] = pd.to_datetime(df_inv["month"], errors="coerce")
         df_inv["net"] = pd.to_numeric(df_inv["net"], errors="coerce").fillna(0)
         df_inv["gross"] = pd.to_numeric(df_inv["gross"], errors="coerce").fillna(0)
-        # Map function code to short name
-        df_inv["client_short"] = df_inv["function"].map(CLIENT_CODES).fillna(
-            df_inv["contact"].str.split(" ").str[0]
-        )
+        def resolve_client(row):
+            if row["function"] in CLIENT_CODES:
+                return CLIENT_CODES[row["function"]]
+            contact = row["contact"] or ""
+            for substring, name in CONTACT_MAP.items():
+                if substring.lower() in contact.lower():
+                    return name
+            return contact.split(" ")[0] if contact else "Unknown"
+
+        df_inv["client_short"] = df_inv.apply(resolve_client, axis=1)
         df_inv["category"] = df_inv["client_short"].map(CATEGORIES).fillna("Other")
         df_inv["revenue_type"] = df_inv["account_code"].map(REVENUE_ACCOUNT_NAMES).fillna("Other")
         # Revenue only — exclude inter-co and non-revenue codes
