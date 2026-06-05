@@ -118,6 +118,7 @@ CATEGORIES = {
     "Amazon": "CTV",
     "BBC": "Media",
     "Billion Dollar Boy": "Agency",
+    "BDB": "Agency",
     "BenLabs": "Agency",
     "Bera": "Agency",
     "C4": "Media",
@@ -127,6 +128,7 @@ CATEGORIES = {
     "Daivid": "Agency",
     "Dentsu": "Media",
     "MailOnline": "Media",
+    "MMM": "Agency",
     "Fresh Tape": "Agency",
     "Gaggl": "Brand",
     "Hello Fresh": "Brand",
@@ -153,15 +155,36 @@ CATEGORIES = {
 }
 
 CONTACT_MAP = {
+    # Netflix — map specific legal entities to their short names
+    "Netflix Services UK": "Netflix UK",
+    "Netflix Services Italy": "Netflix IT",
+    "Netflix Services Spain": "Netflix ES",
+    "Netflix Servicios": "Netflix ES",
+    "Netflix Australia": "Netflix AU",
+    "Netflix Services France": "Netflix FR",
+    "Netflix Services Germany": "Netflix DE",
+    "Netflix Services Korea": "Netflix KR",
+    "Netflix, Inc.": "Netflix US",
+    "Netflix Inc": "Netflix US",
+    "Netflix Entertainment": "Netflix UK",
+    # Amazon
+    "Amazon Advertising": "Amazon",
+    "Amazon.com": "Amazon",
+    "Amazon": "Amazon",
+    # BBC
+    "BBC Global News": "BBC",
+    "BBC Studios Americas": "BBC",
+    "BBC Studios Singapore": "BBC",
+    "BBC Studios": "BBC",
+    "BBC": "BBC",
+    # Others
     "BEN Group": "BenLabs",
     "Harris Poll": "Bera",
-    "DMG Media": "MailOnline",
+    "DMG Media": "MMM",
+    "Billion Dollar Boy": "BDB",
     "Fresh Tape": "Fresh Tape",
-    "Billion Dollar Boy": "Billion Dollar Boy",
-    "Netflix": "Netflix",
-    "Amazon": "Amazon",
-    "BBC": "BBC",
     "Whalar": "Whalar",
+    "Teads Holding": "Teads HCo",
     "Teads": "Teads",
     "Captiv8": "Captiv8",
     "Influencer": "Influencer",
@@ -179,8 +202,8 @@ CONTACT_MAP = {
     "HelloFresh": "Hello Fresh",
     "Unilever": "Unilever",
     "Mail Media": "Mail Media",
-    "C4": "C4",
     "Channel 4": "C4",
+    "C4 ": "C4",
 }
 
 REVENUE_ACCOUNT_NAMES = {
