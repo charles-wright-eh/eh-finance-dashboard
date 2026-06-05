@@ -23,18 +23,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests PyNaCl python-dateutil
+          pip install gspread google-auth requests
 
       - name: Run data refresh
         env:
-          XERO_CLIENT_ID: ${{ secrets.XERO_CLIENT_ID }}
-          XERO_CLIENT_SECRET: ${{ secrets.XERO_CLIENT_SECRET }}
-          XERO_ACCESS_TOKEN: ${{ secrets.XERO_ACCESS_TOKEN }}
-          XERO_REFRESH_TOKEN: ${{ secrets.XERO_REFRESH_TOKEN }}
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-          GH_REPO: ${{ github.repository }}
         run: |
           python scripts/fetch_data.py
 

@@ -1,15 +1,15 @@
 """
 Element Human — Finance Dashboard
-Reads pre-fetched Xero data from /data/ and renders an interactive finance dashboard.
+Reads pre-fetched data from /data/ and renders an interactive finance dashboard.
 """
 
+import calendar as _cal
 import json
-from datetime import date, timedelta
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import streamlit as st
 
 # ── Page config ────────────────────────────────────────────────────────────────
@@ -40,9 +40,8 @@ st.markdown("""
         background: #fff !important;
     }
     [data-testid="stSidebar"] [data-baseweb="input"] input,
-    [data-testid="stSidebar"] [data-baseweb="datepicker"] input {
+    [data-testid="stSidebar"] [data-baseweb="select"] div {
         color: #1a1a2e !important;
-        background: #fff !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -122,11 +121,18 @@ CONTACT_MAP = {
     "Channel 4": "C4", "C4 ": "C4",
 }
 
-REVENUE_CODES = {"401", "402", "403", "409", "410", "411", "430"}
+REVENUE_CODES = {"401", "402", "403", "409", "410", "411", "430", "450"}
 REVENUE_CODE_NAMES = {
     "401": "Recurring", "402": "License", "403": "Retained",
-    "409": "Overages", "410": "Ad hoc", "411": "Services", "430": "Audience Recharges",
+    "409": "Overages", "410": "Ad hoc", "411": "Services",
+    "430": "Audience Recharges", "450": "Other Revenue",
 }
+
+ALL_ENTITIES = ["EHL", "EHRL", "EHGL"]
+
+_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+_YEARS = list(range(2023, date.today().year + 2))
 
 
 # ── Data loading ───────────────────────────────────────────────────────────────
@@ -142,15 +148,17 @@ def load_data():
 
     ehl_inv = read("ehl_invoices.json")
     ehrl_inv = read("ehrl_invoices.json")
+    ehgl_inv = read("ehgl_invoices.json")
     ehl_jnl = read("ehl_journals.json")
     ehrl_jnl = read("ehrl_journals.json")
+    ehgl_jnl = read("ehgl_journals.json")
     tb_raw = read("tb_snapshots.json")
 
     meta_path = DATA_DIR / "metadata.json"
     metadata = json.loads(meta_path.read_text()) if meta_path.exists() else {}
 
     # ── Invoices ──
-    all_inv = ehl_inv + ehrl_inv
+    all_inv = ehl_inv + ehrl_inv + ehgl_inv
     df_inv = pd.DataFrame(all_inv) if all_inv else pd.DataFrame()
 
     if not df_inv.empty:
@@ -165,15 +173,17 @@ def load_data():
         df_inv["revenue_type"] = df_inv["account_code"].map(REVENUE_CODE_NAMES).fillna("Other")
         df_inv["is_revenue"] = df_inv["account_code"].isin(REVENUE_CODES)
 
-    # ── Manual journals (recognised revenue) ──
-    all_jnl = ehl_jnl + ehrl_jnl
+    # ── Journals (recognised revenue) ──
+    all_jnl = ehl_jnl + ehrl_jnl + ehgl_jnl
     df_jnl = pd.DataFrame(all_jnl) if all_jnl else pd.DataFrame()
 
     if not df_jnl.empty:
         df_jnl["date"] = pd.to_datetime(df_jnl["date"], errors="coerce")
         df_jnl["month"] = pd.to_datetime(df_jnl["month"], errors="coerce")
         df_jnl["net"] = pd.to_numeric(df_jnl["net"], errors="coerce").fillna(0)
-        df_jnl["client"] = df_jnl["function"].map(CLIENT_CODES).fillna("Other")
+        df_jnl["client"] = df_jnl["function"].map(CLIENT_CODES).fillna(
+            df_jnl["contact"].apply(_resolve_client_contact)
+        )
         df_jnl["category"] = df_jnl["client"].map(CATEGORIES).fillna("Other")
         df_jnl["revenue_type"] = df_jnl["account_code"].map(REVENUE_CODE_NAMES).fillna("Other")
 
@@ -186,6 +196,10 @@ def load_data():
         df_tb["account_250_balance"] = pd.to_numeric(
             df_tb["account_250_balance"], errors="coerce"
         ).fillna(0)
+        df_tb["account_115_balance"] = pd.to_numeric(
+            df_tb.get("account_115_balance", pd.Series(0, index=df_tb.index)),
+            errors="coerce",
+        ).fillna(0)
 
     return df_inv, df_jnl, df_tb, metadata
 
@@ -193,7 +207,11 @@ def load_data():
 def _resolve_client_invoice(row):
     if row.get("function") in CLIENT_CODES:
         return CLIENT_CODES[row["function"]]
-    contact = row.get("contact") or ""
+    return _resolve_client_contact(row.get("contact") or "")
+
+
+def _resolve_client_contact(contact: str) -> str:
+    contact = str(contact or "")
     for substr, name in CONTACT_MAP.items():
         if substr.lower() in contact.lower():
             return name
@@ -207,6 +225,8 @@ def fmt_gbp(value):
         return "—"
     v = abs(value)
     sign = "-" if value < 0 else ""
+    if st.session_state.get("full_numbers", False):
+        return f"{sign}£{v:,.0f}"
     if v >= 1_000_000:
         return f"{sign}£{v/1_000_000:.1f}m"
     if v >= 1_000:
@@ -220,27 +240,71 @@ def fmt_pct(value):
     return f"{value*100:+.1f}%"
 
 
-def date_filter(key_prefix):
-    """Render a compact date range row. Returns (from_dt, to_dt) as pd.Timestamp."""
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        from_d = st.date_input("From", value=date(2024, 1, 1), key=f"{key_prefix}_from")
-    with col2:
-        to_d = st.date_input("To", value=date.today(), key=f"{key_prefix}_to")
-    return pd.Timestamp(from_d), pd.Timestamp(to_d)
+def date_filter(key_prefix: str) -> tuple[pd.Timestamp, pd.Timestamp]:
+    """Month/year range picker. Returns (from_dt, to_dt) as timestamps."""
+    today = date.today()
+    default_to_month_idx = today.month - 1
+    default_to_year_idx = _YEARS.index(today.year) if today.year in _YEARS else len(_YEARS) - 1
+
+    col_from, col_to = st.columns(2)
+
+    with col_from:
+        st.caption("From")
+        c1, c2 = st.columns(2)
+        from_month = c1.selectbox("Month", _MONTHS, index=0,
+                                  key=f"{key_prefix}_from_m", label_visibility="collapsed")
+        from_year = c2.selectbox("Year", _YEARS, index=0,
+                                 key=f"{key_prefix}_from_y", label_visibility="collapsed")
+
+    with col_to:
+        st.caption("To")
+        c3, c4 = st.columns(2)
+        to_month = c3.selectbox("Month", _MONTHS, index=default_to_month_idx,
+                                key=f"{key_prefix}_to_m", label_visibility="collapsed")
+        to_year = c4.selectbox("Year", _YEARS, index=default_to_year_idx,
+                               key=f"{key_prefix}_to_y", label_visibility="collapsed")
+
+    from_month_num = _MONTHS.index(from_month) + 1
+    to_month_num = _MONTHS.index(to_month) + 1
+    last_day = _cal.monthrange(to_year, to_month_num)[1]
+
+    return (
+        pd.Timestamp(date(from_year, from_month_num, 1)),
+        pd.Timestamp(date(to_year, to_month_num, last_day)),
+    )
 
 
-def section(title):
+def section(title: str) -> None:
     st.markdown(f'<div class="section-header">{title}</div>', unsafe_allow_html=True)
 
 
-def whalar_ttm_mask(df, today=None):
-    """Return mask excluding Whalar rows until WHALAR_TTM_EXCLUDE_UNTIL."""
+def whalar_ttm_mask(df: pd.DataFrame, today: date | None = None) -> pd.Series:
     if today is None:
         today = date.today()
     if today < WHALAR_TTM_EXCLUDE_UNTIL:
         return df["client"] != "Whalar"
     return pd.Series(True, index=df.index)
+
+
+def entity_kpis(label: str, df: pd.DataFrame, entity_filter: list, value_col: str = "net") -> None:
+    section(label)
+    cols = st.columns(len(entity_filter) + 1)
+    cols[0].metric("Total", fmt_gbp(df[value_col].sum()))
+    for i, entity in enumerate(entity_filter):
+        val = df[df["entity"] == entity][value_col].sum()
+        cols[i + 1].metric(entity, fmt_gbp(val))
+
+
+def _latest_tb_balance(df_tb: pd.DataFrame, entity_filter: list, col: str, to_dt: pd.Timestamp) -> float:
+    """Sum the most recent per-entity balance for a TB account column."""
+    if df_tb.empty:
+        return 0.0
+    tb_f = df_tb[df_tb["entity"].isin(entity_filter)]
+    tb_at_end = tb_f[tb_f["date"] <= to_dt]
+    if tb_at_end.empty:
+        return 0.0
+    latest_idx = tb_at_end.groupby("entity")["date"].idxmax()
+    return tb_at_end.loc[latest_idx, col].sum()
 
 
 # ── Load data ──────────────────────────────────────────────────────────────────
@@ -264,10 +328,13 @@ with st.sidebar:
     st.markdown("**Entity**")
     entity_filter = st.multiselect(
         "Entity",
-        options=["EHL", "EHRL"],
+        options=ALL_ENTITIES,
         default=["EHL", "EHRL"],
         label_visibility="collapsed",
     )
+
+    st.markdown("---")
+    st.checkbox("Full numbers", key="full_numbers", value=False)
 
     st.markdown("---")
     if metadata:
@@ -285,6 +352,10 @@ if not data_exists:
     )
     st.stop()
 
+if not entity_filter:
+    st.warning("Select at least one entity in the sidebar.")
+    st.stop()
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE: SUMMARY
@@ -296,60 +367,56 @@ if page == "Summary":
     from_dt, to_dt = date_filter("summary")
     st.markdown("---")
 
-    # Filter invoices
     df_inv_f = df_inv[
         (df_inv["date"] >= from_dt) & (df_inv["date"] <= to_dt) &
         (df_inv["entity"].isin(entity_filter)) &
-        (~df_inv["status"].isin(["VOIDED", "DELETED"]))
-    ].copy()
+        (~df_inv["status"].isin(["VOIDED", "DELETED", "Voided", "Deleted"]))
+    ].copy() if not df_inv.empty else pd.DataFrame()
 
-    # Filter journals
     df_jnl_f = df_jnl[
         (df_jnl["date"] >= from_dt) & (df_jnl["date"] <= to_dt) &
         (df_jnl["entity"].isin(entity_filter))
     ].copy() if not df_jnl.empty else pd.DataFrame()
 
-    # Deferred balance — TB snapshot closest to period end
-    deferred_total = 0.0
-    if not df_tb.empty:
-        tb_f = df_tb[df_tb["entity"].isin(entity_filter)]
-        tb_at_end = tb_f[tb_f["date"] <= to_dt]
-        if not tb_at_end.empty:
-            latest_date = tb_at_end.groupby("entity")["date"].max().reset_index()
-            for _, row in latest_date.iterrows():
-                snap = tb_at_end[
-                    (tb_at_end["entity"] == row["entity"]) &
-                    (tb_at_end["date"] == row["date"])
-                ]
-                deferred_total += snap["account_250_balance"].sum()
+    deferred_total = _latest_tb_balance(df_tb, entity_filter, "account_250_balance", to_dt)
+    accrued_total = _latest_tb_balance(df_tb, entity_filter, "account_115_balance", to_dt)
 
-    # KPI values
-    total_invoiced = df_inv_f["net"].sum()
-    ehl_invoiced = df_inv_f[df_inv_f["entity"] == "EHL"]["net"].sum()
-    ehrl_invoiced = df_inv_f[df_inv_f["entity"] == "EHRL"]["net"].sum()
+    # ── KPI rows ──
+    if not df_inv_f.empty:
+        entity_kpis("Invoices Raised", df_inv_f[df_inv_f["is_revenue"]], entity_filter)
+    else:
+        section("Invoices Raised")
+        st.caption("No invoice data for selected filters.")
 
-    total_recognised = df_jnl_f["net"].sum() if not df_jnl_f.empty else 0
-    ehl_recognised = df_jnl_f[df_jnl_f["entity"] == "EHL"]["net"].sum() if not df_jnl_f.empty else 0
-    ehrl_recognised = df_jnl_f[df_jnl_f["entity"] == "EHRL"]["net"].sum() if not df_jnl_f.empty else 0
+    if not df_jnl_f.empty:
+        entity_kpis("Recognised Revenue", df_jnl_f, entity_filter)
+    else:
+        section("Recognised Revenue")
+        st.caption("No recognised revenue data for selected filters.")
 
-    # ── KPI cards ──
-    section("Invoices Raised")
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Total", fmt_gbp(total_invoiced))
-    c2.metric("EHL", fmt_gbp(ehl_invoiced))
-    c3.metric("EHRL", fmt_gbp(ehrl_invoiced))
+    # ── Balance sheet balances ──
+    section("Balance Sheet (as at period end)")
+    bs_cols = st.columns(len(entity_filter) + 1)
 
-    section("Recognised Revenue")
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Total", fmt_gbp(total_recognised))
-    c2.metric("EHL", fmt_gbp(ehl_recognised))
-    c3.metric("EHRL", fmt_gbp(ehrl_recognised))
+    # Deferred revenue (250) — per entity
+    def_by_entity = {
+        e: _latest_tb_balance(df_tb, [e], "account_250_balance", to_dt)
+        for e in entity_filter
+    }
+    acc_by_entity = {
+        e: _latest_tb_balance(df_tb, [e], "account_115_balance", to_dt)
+        for e in entity_filter
+    }
 
-    section("Deferred Revenue (as at period end)")
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Account 250 Balance", fmt_gbp(deferred_total))
-    if not df_tb.empty and deferred_total == 0:
-        c2.caption("⚠️ Balance showing £0 — TB data may not yet contain account 250 detail.")
+    row_def_cols = st.columns(len(entity_filter) + 1)
+    row_def_cols[0].metric("Deferred Revenue (250)", fmt_gbp(deferred_total))
+    for i, e in enumerate(entity_filter):
+        row_def_cols[i + 1].metric(e, fmt_gbp(def_by_entity[e]))
+
+    row_acc_cols = st.columns(len(entity_filter) + 1)
+    row_acc_cols[0].metric("Accrued Revenue (115)", fmt_gbp(accrued_total))
+    for i, e in enumerate(entity_filter):
+        row_acc_cols[i + 1].metric(e, fmt_gbp(acc_by_entity[e]))
 
     st.markdown("---")
 
@@ -362,7 +429,7 @@ if page == "Summary":
             entity_rev = df_jnl_f.groupby("entity")["net"].sum().reset_index()
             fig = px.pie(
                 entity_rev, values="net", names="entity",
-                color_discrete_sequence=["#1a1a2e", "#e94560"], hole=0.4,
+                color_discrete_sequence=["#1a1a2e", "#e94560", "#4a90d9"], hole=0.4,
             )
             fig.update_traces(texttemplate="%{label}<br>%{percent}")
             fig.update_layout(showlegend=False, margin=dict(t=20, b=20))
@@ -414,11 +481,16 @@ elif page == "Monthly Revenue":
 
     # ── Monthly total ──
     monthly = (
-        df_jnl_f.groupby(df_jnl_f["month"].dt.to_period("M"))["net"]
+        df_jnl_f.dropna(subset=["month"])
+        .groupby(df_jnl_f["month"].dt.to_period("M"))["net"]
         .sum().reset_index()
     )
     monthly["month"] = monthly["month"].dt.to_timestamp()
     monthly = monthly.sort_values("month")
+
+    if monthly.empty:
+        st.info("No monthly data to chart for the selected period.")
+        st.stop()
 
     fig = px.bar(
         monthly, x="month", y="net",
@@ -525,10 +597,14 @@ elif page == "Invoice Detail":
     from_dt, to_dt = date_filter("invoice")
     st.markdown("---")
 
+    if df_inv.empty:
+        st.warning("No invoice data available.")
+        st.stop()
+
     df_inv_f = df_inv[
         (df_inv["date"] >= from_dt) & (df_inv["date"] <= to_dt) &
         (df_inv["entity"].isin(entity_filter)) &
-        (~df_inv["status"].isin(["VOIDED", "DELETED"]))
+        (~df_inv["status"].isin(["VOIDED", "DELETED", "Voided", "Deleted"]))
     ].copy()
 
     if df_inv_f.empty:
@@ -590,19 +666,19 @@ elif page == "Invoice Detail":
 
     display_cols = [
         "entity", "invoice_number", "type", "contact", "client", "date", "paid_date",
-        "account_code", "account_name", "description", "quantity",
-        "unit_price", "net", "tax", "gross", "status",
+        "account_code", "account_name", "description",
+        "net", "tax", "gross", "status",
     ]
     df_table = df_inv_f[display_cols].copy()
     df_table["date"] = df_table["date"].dt.strftime("%d %b %Y")
     df_table["paid_date"] = df_table["paid_date"].dt.strftime("%d %b %Y").fillna("—")
-    for col in ["net", "tax", "gross", "unit_price"]:
+    for col in ["net", "tax", "gross"]:
         df_table[col] = df_table[col].apply(lambda x: f"£{x:,.2f}")
 
     df_table.columns = [
         "Entity", "Invoice", "Type", "Contact", "Client", "Date", "Paid Date",
-        "Code", "Account", "Description", "Qty",
-        "Unit Price", "Net", "Tax", "Gross", "Status",
+        "Code", "Account", "Description",
+        "Net", "Tax", "Gross", "Status",
     ]
     st.dataframe(df_table, use_container_width=True, hide_index=True, height=500)
 
@@ -619,7 +695,7 @@ elif page == "Invoice Detail":
 
 elif page == "Account Transactions":
     st.title("Account Transactions")
-    st.caption("Manual journal entries — recognised revenue postings from account 250 to revenue codes.")
+    st.caption("Revenue account transactions — invoices, credit notes, and manual journal entries.")
 
     from_dt, to_dt = date_filter("tx")
     st.markdown("---")
@@ -638,23 +714,29 @@ elif page == "Account Transactions":
         st.stop()
 
     # ── Filters ──
-    c1, c2 = st.columns(2)
+    c1, c2, c3 = st.columns(3)
     with c1:
         code_opts = sorted(df_jnl_f["account_code"].dropna().unique())
         selected_codes = st.multiselect("Account code", code_opts, default=code_opts)
     with c2:
+        source_opts = sorted(df_jnl_f["source"].dropna().unique())
+        selected_sources = st.multiselect("Source", source_opts, default=source_opts)
+    with c3:
         client_opts = sorted(df_jnl_f["client"].dropna().unique())
         selected_clients = st.multiselect("Client", client_opts, default=[])
 
-    mask = df_jnl_f["account_code"].isin(selected_codes)
+    mask = (
+        df_jnl_f["account_code"].isin(selected_codes) &
+        df_jnl_f["source"].isin(selected_sources)
+    )
     if selected_clients:
         mask &= df_jnl_f["client"].isin(selected_clients)
     df_jnl_f = df_jnl_f[mask]
 
     # ── KPIs ──
     c1, c2, c3 = st.columns(3)
-    c1.metric("Journal lines", f"{len(df_jnl_f):,}")
-    c2.metric("Total Recognised", fmt_gbp(df_jnl_f["net"].sum()))
+    c1.metric("Transaction lines", f"{len(df_jnl_f):,}")
+    c2.metric("Total Net", fmt_gbp(df_jnl_f["net"].sum()))
     c3.metric("Entities", ", ".join(sorted(df_jnl_f["entity"].unique())))
 
     st.markdown("---")
@@ -675,9 +757,11 @@ elif page == "Account Transactions":
     st.markdown("---")
 
     # ── Table ──
+    section("Transaction Lines")
+
     display_cols = [
         "entity", "date", "month", "client", "account_code", "account_name",
-        "description", "narration", "net", "tax", "status",
+        "source", "description", "net", "tax", "status",
     ]
     df_table = df_jnl_f[display_cols].copy()
     df_table["date"] = df_table["date"].dt.strftime("%d %b %Y")
@@ -686,7 +770,7 @@ elif page == "Account Transactions":
     df_table["tax"] = df_table["tax"].apply(lambda x: f"£{x:,.2f}")
     df_table.columns = [
         "Entity", "Date", "Month", "Client", "Code", "Account",
-        "Description", "Narration", "Net", "Tax", "Status",
+        "Source", "Description", "Net", "Tax", "Status",
     ]
     st.dataframe(df_table, use_container_width=True, hide_index=True, height=500)
 

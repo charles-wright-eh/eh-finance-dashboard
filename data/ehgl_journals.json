@@ -1,0 +1,19 @@
+[
+  {
+    "entity": "EHGL",
+    "date": "2025-07-31",
+    "month": "2025-07-01",
+    "account_code": "450",
+    "account_name": "Other Revenue",
+    "source": "Manual Journal",
+    "description": "R&D Tax Credits claim 2024-25",
+    "narration": "Manual Journal",
+    "reference": "R&D Tax Credits claim 2024-25",
+    "net": 51534.6,
+    "tax": 0.0,
+    "function": "80 - G&A",
+    "subfunction": "",
+    "contact": "",
+    "status": "Posted"
+  }
+]

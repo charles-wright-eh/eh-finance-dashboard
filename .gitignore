@@ -12,3 +12,12 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Google service account key — never commit credentials
+eh-finance-dashboard-*.json
+
+# Allow data files to be committed
+!data/*.json
+
+# Excel/local working files
+*.xlsx
