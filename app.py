@@ -172,6 +172,15 @@ CONTACT_MAP = {
 }
 
 REVENUE_CODES = {"401", "402", "403", "409", "410", "411", "430", "450"}
+
+# Contacts that represent internal EH entities — excluded from Invoices Raised
+EH_ENTITY_CONTACTS = {
+    "Element Human Group Limited",
+    "Element Human Group",
+    "Element Human Limited",
+    "Element Human Research Limited",
+}
+
 REVENUE_CODE_NAMES = {
     "401": "Recurring", "402": "License", "403": "Retained",
     "409": "Overages", "410": "Ad hoc", "411": "Services",
@@ -336,21 +345,6 @@ def entity_kpis(label: str, df: pd.DataFrame, entities: list, value_col: str = "
         cols[i + 1].metric(e, fmt_gbp(df[df["entity"] == e][value_col].sum()))
 
 
-def invoice_kpis(label: str, df: pd.DataFrame, entities: list) -> None:
-    """Show Invoices Raised split by Net / Tax / Gross across entities."""
-    section(label)
-    if df.empty:
-        st.caption("No invoice data for selected filters.")
-        return
-    col_labels = ["Total"] + list(entities)
-    data = {}
-    for metric, col in [("Net", "net"), ("Tax", "tax"), ("Gross", "gross")]:
-        data[metric] = [fmt_gbp(df[col].sum())] + [
-            fmt_gbp(df[df["entity"] == e][col].sum()) for e in entities
-        ]
-    df_disp = pd.DataFrame(data, index=col_labels).T
-    st.dataframe(df_disp, use_container_width=True)
-
 
 def tb_kpis(label: str, df_tb: pd.DataFrame, entities: list, col: str, to_dt: pd.Timestamp) -> None:
     """Show a TB balance (e.g. deferred/accrued) total and per entity."""
@@ -463,8 +457,16 @@ if page == "Summary":
         (df_jnl["entity"].isin(entity_filter))
     ].copy() if not df_jnl.empty else pd.DataFrame()
 
-    # Invoices Raised — all receivable invoice lines, Net/Tax/Gross table
-    invoice_kpis("Invoices Raised", df_inv_f, entity_filter)
+    # Invoices Raised — account 110 (AR control), external clients only
+    df_ar = df_inv_f[
+        (df_inv_f["account_code"] == "110") &
+        (~df_inv_f["contact"].isin(EH_ENTITY_CONTACTS))
+    ] if not df_inv_f.empty else pd.DataFrame()
+    if not df_ar.empty:
+        entity_kpis("Invoices Raised", df_ar, entity_filter)
+    else:
+        section("Invoices Raised")
+        st.caption("No invoice data for selected filters.")
 
     # Recognised Revenue — single net figure per entity
     if not df_jnl_f.empty:
