@@ -189,6 +189,14 @@ REVENUE_CODE_NAMES = {
 
 ALL_ENTITIES = ["EHL", "EHRL", "EHGL"]
 
+NETFLIX_CLIENTS = {
+    "Netflix", "Netflix US", "Netflix ES", "Netflix IT",
+    "Netflix UK", "Netflix AU", "Netflix FR", "Netflix DE", "Netflix KR",
+}
+
+# Earliest date for which we have complete G-Accon data
+DATA_START = pd.Timestamp("2023-01-01")
+
 _MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 _YEARS = list(range(2023, date.today().year + 2))
@@ -536,6 +544,7 @@ elif page == "Monthly Revenue":
         st.warning("No recognised revenue data available.")
         st.stop()
 
+    # Chart data: filtered to selected date range
     df_jnl_f = df_jnl[
         (df_jnl["date"] >= from_dt) & (df_jnl["date"] <= to_dt) &
         (df_jnl["entity"].isin(entity_filter))
@@ -545,7 +554,10 @@ elif page == "Monthly Revenue":
         st.warning("No recognised revenue data for the selected filters.")
         st.stop()
 
-    # Monthly total bar
+    # Rolling metrics data: entity-filtered only — not bounded by from_dt
+    df_jnl_all = df_jnl[df_jnl["entity"].isin(entity_filter)].copy()
+
+    # ── Monthly bar chart ──
     monthly = (
         df_jnl_f.dropna(subset=["month"])
         .groupby(df_jnl_f["month"].dt.to_period("M"))["net"]
@@ -558,79 +570,117 @@ elif page == "Monthly Revenue":
         st.info("No monthly data to chart for the selected period.")
         st.stop()
 
+    period_total = monthly["net"].sum()
+    monthly["pct"] = (monthly["net"] / period_total * 100).round(1)
+
     fig = px.bar(
         monthly, x="month", y="net",
         color_discrete_sequence=[EH_TEAL],
-        labels={"net": "£", "month": "Month"}, text_auto=".3s",
+        labels={"net": "£", "month": "Month"},
+        custom_data=["pct"],
+    )
+    fig.update_traces(
+        texttemplate="%{y:.3s}", textposition="outside",
+        hovertemplate="<b>%{x|%b %Y}</b><br>£%{y:,.0f}  (%{customdata[0]:.1f}% of period)<extra></extra>",
     )
     fig.update_layout(
-        title="Monthly Recognised Revenue",
-        xaxis_title="", yaxis_title="£", margin=dict(t=40, b=20),
+        xaxis_title="", yaxis_title="£", margin=dict(t=30, b=20),
         font=dict(family="Poppins"),
+        xaxis=dict(tickformat="%b %y"),
     )
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
 
-    # Rolling metrics (Whalar excluded from TTM until July 2026)
-    months_idx = monthly.set_index("month")["net"]
-    latest = monthly["month"].max()
+    # ── Rolling metrics — always based on to_dt, includes Whalar ──
+    def _period_sum(df, start_excl, end_incl):
+        return float(df[(df["date"] > start_excl) & (df["date"] <= end_incl)]["net"].sum())
 
-    whalar_mask = whalar_ttm_mask(df_jnl_f)
-    ttm_monthly = (
-        df_jnl_f[whalar_mask]
-        .groupby(df_jnl_f["month"].dt.to_period("M"))["net"]
-        .sum().reset_index()
-    )
-    ttm_monthly["month"] = ttm_monthly["month"].dt.to_timestamp()
-    ttm_idx = ttm_monthly.set_index("month")["net"]
-
-    def rolling(idx, months_back, ref=latest):
-        return idx[idx.index > ref - pd.DateOffset(months=months_back)].sum()
-
-    def prior_rolling(idx, months_back, ref=latest):
-        end = ref - pd.DateOffset(months=months_back)
-        return idx[(idx.index > end - pd.DateOffset(months=months_back)) & (idx.index <= end)].sum()
-
-    ttm   = rolling(ttm_idx, 12)
-    t6m   = rolling(months_idx, 6)
-    t3m   = rolling(months_idx, 3)
-    p_ttm = prior_rolling(ttm_idx, 12)
-    p_t6m = prior_rolling(months_idx, 6)
-    p_t3m = prior_rolling(months_idx, 3)
-
-    c1, c2, c3 = st.columns(3)
-    c1.metric(
-        "TTM Revenue" + (" (excl. Whalar)" if date.today() < WHALAR_TTM_EXCLUDE_UNTIL else ""),
-        fmt_gbp(ttm),
-        delta=fmt_pct((ttm - p_ttm) / p_ttm) if p_ttm else None,
-    )
-    c2.metric("T6M Revenue", fmt_gbp(t6m),
-              delta=fmt_pct((t6m - p_t6m) / p_t6m) if p_t6m else None)
-    c3.metric("T3M Revenue", fmt_gbp(t3m),
-              delta=fmt_pct((t3m - p_t3m) / p_t3m) if p_t3m else None)
+    rolling_defs = [(12, "TTM"), (6, "T6M"), (3, "T3M")]
+    cols = st.columns(3)
+    for col, (n, label) in zip(cols, rolling_defs):
+        curr_start = to_dt - pd.DateOffset(months=n)
+        curr = _period_sum(df_jnl_all, curr_start, to_dt)
+        prior_start = to_dt - pd.DateOffset(months=n * 2)
+        prior_end = curr_start
+        prior = _period_sum(df_jnl_all, prior_start, prior_end)
+        can_compare = prior_start >= DATA_START
+        delta = fmt_pct((curr - prior) / prior) if (can_compare and prior) else None
+        col.metric(f"{label} Revenue", fmt_gbp(curr), delta=delta)
 
     st.markdown("---")
 
-    # Monthly by client heatmap
+    # ── Monthly by client heatmap ──
     section("Monthly Recognised Revenue by Client")
+
+    show_netflix = st.checkbox("Show Netflix breakdown", key="netflix_detail", value=False)
+    df_heat = df_jnl_f.copy()
+    if not show_netflix:
+        df_heat["client"] = df_heat["client"].apply(
+            lambda c: "Netflix" if c in NETFLIX_CLIENTS else c
+        )
+
     monthly_client = (
-        df_jnl_f.groupby([df_jnl_f["month"].dt.to_period("M"), "client"])["net"]
+        df_heat.groupby([df_heat["month"].dt.to_period("M"), "client"])["net"]
         .sum().reset_index()
     )
     monthly_client["month"] = monthly_client["month"].dt.to_timestamp()
+
     pivot = monthly_client.pivot_table(
         index="client", columns="month", values="net", aggfunc="sum", fill_value=0,
     )
-    pivot["Total"] = pivot.sum(axis=1)
-    pivot = pivot.sort_values("Total", ascending=False).drop(columns="Total")
+    pivot = pivot.sort_index()  # alphabetical
     pivot.columns = [pd.Timestamp(c).strftime("%b %y") for c in pivot.columns]
     pivot.loc["TOTAL"] = pivot.sum(axis=0)
     st.dataframe(pivot.map(lambda x: fmt_gbp(x) if x != 0 else "—"), use_container_width=True)
 
     st.markdown("---")
 
-    # Revenue by type stacked bar
+    # ── Client metrics ──
+    section("Client Metrics")
+    client_totals = df_heat.groupby("client")["net"].sum()
+    active = int((client_totals > 0).sum())
+    total_rev = float(client_totals.sum())
+    max_rev = float(client_totals.max()) if not client_totals.empty else 0.0
+    max_client = client_totals.idxmax() if not client_totals.empty else "—"
+    avg_rev = total_rev / active if active else 0.0
+    concentration = max_rev / total_rev if total_rev else 0.0
+
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Max Revenue", fmt_gbp(max_rev), help=max_client)
+    c2.metric("Revenue Concentration", f"{concentration*100:.1f}%", help="Largest client as % of total")
+    c3.metric("Active Clients", str(active))
+    c4.metric("Avg Revenue per Client", fmt_gbp(avg_rev))
+
+    # Recognised revenue by client — horizontal bar, sorted descending
+    client_bar = (
+        client_totals[client_totals > 0]
+        .sort_values(ascending=True)
+        .reset_index()
+    )
+    client_bar.columns = ["client", "net"]
+    client_bar["pct"] = (client_bar["net"] / total_rev * 100).round(1)
+
+    fig = px.bar(
+        client_bar, x="net", y="client", orientation="h",
+        color_discrete_sequence=[EH_TEAL],
+        labels={"net": "£", "client": ""},
+        custom_data=["pct"],
+        height=max(380, len(client_bar) * 30),
+    )
+    fig.update_traces(
+        hovertemplate="<b>%{y}</b><br>£%{x:,.0f}  (%{customdata[0]:.1f}% of total)<extra></extra>",
+    )
+    fig.update_layout(
+        xaxis_title="£", yaxis_title="",
+        margin=dict(t=10, b=20, l=10),
+        font=dict(family="Poppins"),
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown("---")
+
+    # ── Revenue by type stacked bar ──
     section("Recognised Revenue by Type Over Time")
     monthly_type = (
         df_jnl_f.groupby([df_jnl_f["month"].dt.to_period("M"), "revenue_type"])["net"]
@@ -638,13 +688,25 @@ elif page == "Monthly Revenue":
     )
     monthly_type["month"] = monthly_type["month"].dt.to_timestamp()
     monthly_type = monthly_type.sort_values("month")
+    month_totals = monthly_type.groupby("month")["net"].transform("sum")
+    monthly_type["pct"] = (monthly_type["net"] / month_totals * 100).round(1)
+
     fig = px.bar(
         monthly_type, x="month", y="net", color="revenue_type",
         color_discrete_sequence=EH_PALETTE,
-        labels={"net": "£", "month": "Month", "revenue_type": "Type"}, barmode="stack",
+        labels={"net": "£", "month": "Month", "revenue_type": "Type"},
+        barmode="stack",
+        custom_data=["pct"],
     )
-    fig.update_layout(xaxis_title="", yaxis_title="£", margin=dict(t=20, b=20),
-                      font=dict(family="Poppins"))
+    fig.update_traces(
+        hovertemplate="<b>%{fullData.name}</b><br>£%{y:,.0f}  (%{customdata[0]:.1f}% of month)<extra></extra>",
+    )
+    fig.update_layout(
+        xaxis_title="", yaxis_title="£",
+        margin=dict(t=20, b=20),
+        font=dict(family="Poppins"),
+        xaxis=dict(tickformat="%b %y", dtick="M1"),
+    )
     st.plotly_chart(fig, use_container_width=True)
 
 
