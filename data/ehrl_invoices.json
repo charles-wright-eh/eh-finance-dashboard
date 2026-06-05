@@ -4,7 +4,7 @@
     "invoice_number": "INV-0055",
     "type": "INV",
     "contact": "Amazon.com Services LLC",
-    "date": "2024-08-14T00:00:00",
+    "date": "2024-08-14",
     "paid_date": null,
     "item_code": "",
     "account_code": "",
@@ -18,14 +18,14 @@
     "gross": 0,
     "status": "DELETED",
     "function": "",
-    "month": "2024-08-14T00:00:00"
+    "month": "2024-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0058",
     "type": "INV",
     "contact": "Amazon.com Services LLC",
-    "date": "2024-08-14T00:00:00",
+    "date": "2024-08-14",
     "paid_date": null,
     "item_code": "",
     "account_code": "410",
@@ -39,14 +39,14 @@
     "gross": 28500.0,
     "status": "DELETED",
     "function": "",
-    "month": "2024-08-14T00:00:00"
+    "month": "2024-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0062",
     "type": "INV",
     "contact": "Netflix, Inc.",
-    "date": "2024-10-01T00:00:00",
+    "date": "2024-10-01",
     "paid_date": null,
     "item_code": "",
     "account_code": "410",
@@ -60,14 +60,14 @@
     "gross": 51000.0,
     "status": "DELETED",
     "function": "",
-    "month": "2024-10-01T00:00:00"
+    "month": "2024-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0075",
     "type": "INV",
     "contact": "BEN Group, Inc.",
-    "date": "2025-03-06T00:00:00",
+    "date": "2025-03-06",
     "paid_date": null,
     "item_code": "",
     "account_code": "",
@@ -81,14 +81,14 @@
     "gross": 0,
     "status": "DELETED",
     "function": "",
-    "month": "2025-03-06T00:00:00"
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0083",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-05-01T00:00:00",
+    "date": "2025-05-01",
     "paid_date": null,
     "item_code": "",
     "account_code": "",
@@ -102,14 +102,14 @@
     "gross": 0,
     "status": "DELETED",
     "function": "",
-    "month": "2025-05-01T00:00:00"
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0084",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-05-02T00:00:00",
+    "date": "2025-05-02",
     "paid_date": null,
     "item_code": "",
     "account_code": "410",
@@ -123,14 +123,14 @@
     "gross": 23.0,
     "status": "DELETED",
     "function": "",
-    "month": "2025-05-02T00:00:00"
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0088",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-05-29T00:00:00",
+    "date": "2025-05-29",
     "paid_date": "2025-06-06",
     "item_code": "",
     "account_code": "250",
@@ -143,15 +143,15 @@
     "tax": 0,
     "gross": 5847.35,
     "status": "PAID",
-    "function": "",
-    "month": "2025-05-29T00:00:00"
+    "function": "AMA002",
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0066",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-11-22T00:00:00",
+    "date": "2024-11-22",
     "paid_date": "2024-11-25",
     "item_code": "",
     "account_code": "410",
@@ -164,15 +164,15 @@
     "tax": 0,
     "gross": 9500.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-11-22T00:00:00"
+    "function": "AMA002",
+    "month": "2024-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0065",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-11-22T00:00:00",
+    "date": "2024-11-22",
     "paid_date": "2024-11-26",
     "item_code": "",
     "account_code": "410",
@@ -185,15 +185,15 @@
     "tax": 0,
     "gross": 9500.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-11-22T00:00:00"
+    "function": "AMA002",
+    "month": "2024-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0065",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-11-22T00:00:00",
+    "date": "2024-11-22",
     "paid_date": "2024-11-26",
     "item_code": "",
     "account_code": "410",
@@ -206,15 +206,15 @@
     "tax": 0,
     "gross": -246.05,
     "status": "PAID",
-    "function": "",
-    "month": "2024-11-22T00:00:00"
+    "function": "AMA002",
+    "month": "2024-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0070",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-07T00:00:00",
+    "date": "2025-02-07",
     "paid_date": "2025-02-24",
     "item_code": "",
     "account_code": "410",
@@ -227,15 +227,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0070",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-07T00:00:00",
+    "date": "2025-02-07",
     "paid_date": "2025-02-24",
     "item_code": "",
     "account_code": "410",
@@ -248,15 +248,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0070",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-07T00:00:00",
+    "date": "2025-02-07",
     "paid_date": "2025-02-24",
     "item_code": "",
     "account_code": "410",
@@ -269,15 +269,15 @@
     "tax": 0,
     "gross": 5985.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0070",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-07T00:00:00",
+    "date": "2025-02-07",
     "paid_date": "2025-02-24",
     "item_code": "",
     "account_code": "410",
@@ -290,15 +290,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0070",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-07T00:00:00",
+    "date": "2025-02-07",
     "paid_date": "2025-02-24",
     "item_code": "",
     "account_code": "410",
@@ -311,15 +311,15 @@
     "tax": 0,
     "gross": -523.89,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0079",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-04-10T00:00:00",
+    "date": "2025-04-10",
     "paid_date": "2025-04-14",
     "item_code": "",
     "account_code": "410",
@@ -332,15 +332,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-04-10T00:00:00"
+    "function": "AMA002",
+    "month": "2025-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0079",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-04-10T00:00:00",
+    "date": "2025-04-10",
     "paid_date": "2025-04-14",
     "item_code": "",
     "account_code": "410",
@@ -353,15 +353,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-04-10T00:00:00"
+    "function": "AMA002",
+    "month": "2025-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0079",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-04-10T00:00:00",
+    "date": "2025-04-10",
     "paid_date": "2025-04-14",
     "item_code": "",
     "account_code": "410",
@@ -374,15 +374,15 @@
     "tax": 0,
     "gross": -155.01,
     "status": "PAID",
-    "function": "",
-    "month": "2025-04-10T00:00:00"
+    "function": "AMA002",
+    "month": "2025-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0059",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-08-13T00:00:00",
+    "date": "2024-08-13",
     "paid_date": "2024-09-11",
     "item_code": "",
     "account_code": "410",
@@ -395,15 +395,15 @@
     "tax": 0,
     "gross": 28500.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-08-13T00:00:00"
+    "function": "AMA002",
+    "month": "2024-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0059",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-08-13T00:00:00",
+    "date": "2024-08-13",
     "paid_date": "2024-09-11",
     "item_code": "",
     "account_code": "410",
@@ -416,15 +416,15 @@
     "tax": 0,
     "gross": -798.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-08-13T00:00:00"
+    "function": "AMA002",
+    "month": "2024-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0068",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-11-25T00:00:00",
+    "date": "2024-11-25",
     "paid_date": "2024-12-02",
     "item_code": "",
     "account_code": "410",
@@ -437,15 +437,15 @@
     "tax": 0,
     "gross": 28500.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-11-25T00:00:00"
+    "function": "AMA002",
+    "month": "2024-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0068",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-11-25T00:00:00",
+    "date": "2024-11-25",
     "paid_date": "2024-12-02",
     "item_code": "",
     "account_code": "410",
@@ -458,15 +458,15 @@
     "tax": 0,
     "gross": -701.1,
     "status": "PAID",
-    "function": "",
-    "month": "2024-11-25T00:00:00"
+    "function": "AMA002",
+    "month": "2024-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0069",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-12-05T00:00:00",
+    "date": "2024-12-05",
     "paid_date": "2024-12-17",
     "item_code": "",
     "account_code": "410",
@@ -479,15 +479,15 @@
     "tax": 0,
     "gross": 19000.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-12-05T00:00:00"
+    "function": "AMA002",
+    "month": "2024-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0069",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2024-12-05T00:00:00",
+    "date": "2024-12-05",
     "paid_date": "2024-12-17",
     "item_code": "",
     "account_code": "410",
@@ -500,15 +500,15 @@
     "tax": 0,
     "gross": -425.6,
     "status": "PAID",
-    "function": "",
-    "month": "2024-12-05T00:00:00"
+    "function": "AMA002",
+    "month": "2024-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0076",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-03-25T00:00:00",
+    "date": "2025-03-25",
     "paid_date": "2025-03-28",
     "item_code": "",
     "account_code": "410",
@@ -521,15 +521,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-03-25T00:00:00"
+    "function": "AMA002",
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0076",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-03-25T00:00:00",
+    "date": "2025-03-25",
     "paid_date": "2025-03-28",
     "item_code": "",
     "account_code": "410",
@@ -542,15 +542,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-03-25T00:00:00"
+    "function": "AMA002",
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0076",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-03-25T00:00:00",
+    "date": "2025-03-25",
     "paid_date": "2025-03-28",
     "item_code": "",
     "account_code": "410",
@@ -563,15 +563,15 @@
     "tax": 0,
     "gross": -210.67,
     "status": "PAID",
-    "function": "",
-    "month": "2025-03-25T00:00:00"
+    "function": "AMA002",
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0077",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-04-10T00:00:00",
+    "date": "2025-04-10",
     "paid_date": "2025-04-10",
     "item_code": "",
     "account_code": "410",
@@ -584,15 +584,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-04-10T00:00:00"
+    "function": "AMA002",
+    "month": "2025-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0085",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-05-02T00:00:00",
+    "date": "2025-05-02",
     "paid_date": "2025-05-08",
     "item_code": "",
     "account_code": "410",
@@ -605,15 +605,15 @@
     "tax": 0,
     "gross": 11670.75,
     "status": "PAID",
-    "function": "",
-    "month": "2025-05-02T00:00:00"
+    "function": "AMA002",
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0089",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-06-04T00:00:00",
+    "date": "2025-06-04",
     "paid_date": "2025-06-06",
     "item_code": "",
     "account_code": "410",
@@ -626,15 +626,15 @@
     "tax": 0,
     "gross": 9745.58,
     "status": "PAID",
-    "function": "",
-    "month": "2025-06-04T00:00:00"
+    "function": "AMA002",
+    "month": "2025-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0089",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-06-04T00:00:00",
+    "date": "2025-06-04",
     "paid_date": "2025-06-06",
     "item_code": "",
     "account_code": "410",
@@ -647,15 +647,15 @@
     "tax": 0,
     "gross": 9745.58,
     "status": "PAID",
-    "function": "",
-    "month": "2025-06-04T00:00:00"
+    "function": "AMA002",
+    "month": "2025-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0071",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-24T00:00:00",
+    "date": "2025-02-24",
     "paid_date": "2025-03-13",
     "item_code": "",
     "account_code": "410",
@@ -668,15 +668,15 @@
     "tax": 0,
     "gross": 7980.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-24T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0071",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-24T00:00:00",
+    "date": "2025-02-24",
     "paid_date": "2025-03-13",
     "item_code": "",
     "account_code": "410",
@@ -689,15 +689,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-24T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0071",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-02-24T00:00:00",
+    "date": "2025-02-24",
     "paid_date": "2025-03-13",
     "item_code": "",
     "account_code": "410",
@@ -710,15 +710,15 @@
     "tax": 0,
     "gross": -241.79,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-24T00:00:00"
+    "function": "AMA002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0082",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-05-01T00:00:00",
+    "date": "2025-05-01",
     "paid_date": "2025-06-20",
     "item_code": "",
     "account_code": "410",
@@ -731,15 +731,15 @@
     "tax": 0,
     "gross": 5985.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-05-01T00:00:00"
+    "function": "BER001",
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0064",
     "type": "INV",
     "contact": "BEN Group, Inc.",
-    "date": "2024-10-29T00:00:00",
+    "date": "2024-10-29",
     "paid_date": "2024-12-17",
     "item_code": "",
     "account_code": "250",
@@ -752,15 +752,15 @@
     "tax": 0,
     "gross": 19750.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-10-29T00:00:00"
+    "function": "BEN001",
+    "month": "2024-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0074",
     "type": "INV",
     "contact": "BEN Group, Inc.",
-    "date": "2025-03-07T00:00:00",
+    "date": "2025-03-07",
     "paid_date": "2025-05-12",
     "item_code": "",
     "account_code": "410",
@@ -773,15 +773,15 @@
     "tax": 0,
     "gross": 7980.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-03-07T00:00:00"
+    "function": "BEN001",
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0074",
     "type": "INV",
     "contact": "BEN Group, Inc.",
-    "date": "2025-03-07T00:00:00",
+    "date": "2025-03-07",
     "paid_date": "2025-05-12",
     "item_code": "",
     "account_code": "410",
@@ -794,15 +794,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-03-07T00:00:00"
+    "function": "BEN001",
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0086",
     "type": "INV",
     "contact": "Hinge, Inc.",
-    "date": "2025-05-19T00:00:00",
+    "date": "2025-05-19",
     "paid_date": "2025-07-02",
     "item_code": "",
     "account_code": "250",
@@ -815,15 +815,15 @@
     "tax": 0,
     "gross": 39900.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-05-19T00:00:00"
+    "function": "HIN001",
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0081",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2025-05-08T00:00:00",
+    "date": "2025-05-08",
     "paid_date": "2025-06-24",
     "item_code": "",
     "account_code": "410",
@@ -836,15 +836,15 @@
     "tax": 0,
     "gross": 15690.28,
     "status": "PAID",
-    "function": "",
-    "month": "2025-05-08T00:00:00"
+    "function": "CRE001",
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0054",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2024-05-31T00:00:00",
+    "date": "2024-05-31",
     "paid_date": "2024-08-12",
     "item_code": "",
     "account_code": "410",
@@ -857,15 +857,15 @@
     "tax": 0,
     "gross": 38500.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-05-31T00:00:00"
+    "function": "CRE001",
+    "month": "2024-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0063",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2024-10-10T00:00:00",
+    "date": "2024-10-10",
     "paid_date": "2024-11-13",
     "item_code": "",
     "account_code": "410",
@@ -878,15 +878,15 @@
     "tax": 0,
     "gross": 22000.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-10-10T00:00:00"
+    "function": "CRE001",
+    "month": "2024-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0057",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2024-08-12T00:00:00",
+    "date": "2024-08-12",
     "paid_date": "2024-09-26",
     "item_code": "",
     "account_code": "410",
@@ -899,15 +899,15 @@
     "tax": 0,
     "gross": 38500.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-08-12T00:00:00"
+    "function": "CRE001",
+    "month": "2024-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0060",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2024-09-26T00:00:00",
+    "date": "2024-09-26",
     "paid_date": "2024-11-13",
     "item_code": "",
     "account_code": "410",
@@ -920,15 +920,15 @@
     "tax": 0,
     "gross": 38500.0,
     "status": "PAID",
-    "function": "",
-    "month": "2024-09-26T00:00:00"
+    "function": "CRE001",
+    "month": "2024-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0090",
     "type": "INV",
     "contact": "Fresh Tape Media",
-    "date": "2025-06-17T00:00:00",
+    "date": "2025-06-17",
     "paid_date": "2025-06-24",
     "item_code": "",
     "account_code": "410",
@@ -941,15 +941,15 @@
     "tax": 0,
     "gross": 9975.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-06-17T00:00:00"
+    "function": "FRE001",
+    "month": "2025-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0090",
     "type": "INV",
     "contact": "Fresh Tape Media",
-    "date": "2025-06-17T00:00:00",
+    "date": "2025-06-17",
     "paid_date": "2025-06-24",
     "item_code": "",
     "account_code": "",
@@ -962,15 +962,15 @@
     "tax": 0,
     "gross": 0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-06-17T00:00:00"
+    "function": "FRE001",
+    "month": "2025-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0080",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2025-05-13T00:00:00",
+    "date": "2025-05-13",
     "paid_date": "2025-07-09",
     "item_code": "",
     "account_code": "410",
@@ -983,15 +983,15 @@
     "tax": 0,
     "gross": 15690.28,
     "status": "PAID",
-    "function": "",
-    "month": "2025-05-13T00:00:00"
+    "function": "CRE001",
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0072",
     "type": "INV",
     "contact": "Captiv8 Inc.",
-    "date": "2025-02-26T00:00:00",
+    "date": "2025-02-26",
     "paid_date": "2025-05-20",
     "item_code": "",
     "account_code": "401",
@@ -1004,15 +1004,15 @@
     "tax": 0,
     "gross": 21546.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-26T00:00:00"
+    "function": "CAP002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0072",
     "type": "INV",
     "contact": "Captiv8 Inc.",
-    "date": "2025-02-26T00:00:00",
+    "date": "2025-02-26",
     "paid_date": "2025-05-20",
     "item_code": "",
     "account_code": "401",
@@ -1025,15 +1025,15 @@
     "tax": 0,
     "gross": 7182.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-02-26T00:00:00"
+    "function": "CAP002",
+    "month": "2025-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0073",
     "type": "INV",
     "contact": "BEN Group, Inc.",
-    "date": "2025-03-18T00:00:00",
+    "date": "2025-03-18",
     "paid_date": "2025-07-11",
     "item_code": "",
     "account_code": "410",
@@ -1046,15 +1046,15 @@
     "tax": 0,
     "gross": 5985.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-03-18T00:00:00"
+    "function": "BEN001",
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0073",
     "type": "INV",
     "contact": "BEN Group, Inc.",
-    "date": "2025-03-18T00:00:00",
+    "date": "2025-03-18",
     "paid_date": "2025-07-11",
     "item_code": "",
     "account_code": "410",
@@ -1067,15 +1067,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-03-18T00:00:00"
+    "function": "BEN001",
+    "month": "2025-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0091",
     "type": "INV",
     "contact": "Collectively Inc.",
-    "date": "2025-06-17T00:00:00",
+    "date": "2025-06-17",
     "paid_date": "2025-07-24",
     "item_code": "",
     "account_code": "250",
@@ -1088,15 +1088,15 @@
     "tax": 0,
     "gross": 9975.2,
     "status": "PAID",
-    "function": "",
-    "month": "2025-06-17T00:00:00"
+    "function": "COL001",
+    "month": "2025-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0087",
     "type": "INV",
     "contact": "Captiv8 Inc.",
-    "date": "2025-05-28T00:00:00",
+    "date": "2025-05-28",
     "paid_date": "2025-08-22",
     "item_code": "",
     "account_code": "250",
@@ -1109,15 +1109,15 @@
     "tax": 0,
     "gross": 9975.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-05-28T00:00:00"
+    "function": "CAP002",
+    "month": "2025-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0097",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-08-28T00:00:00",
+    "date": "2025-08-28",
     "paid_date": "2025-09-09",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1130,15 +1130,15 @@
     "tax": 0,
     "gross": 1949.91,
     "status": "PAID",
-    "function": "",
-    "month": "2025-08-28T00:00:00"
+    "function": "AMA002",
+    "month": "2025-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0097",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-08-28T00:00:00",
+    "date": "2025-08-28",
     "paid_date": "2025-09-09",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1151,15 +1151,15 @@
     "tax": 0,
     "gross": 3899.83,
     "status": "PAID",
-    "function": "",
-    "month": "2025-08-28T00:00:00"
+    "function": "AMA002",
+    "month": "2025-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0095",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-08-29T00:00:00",
+    "date": "2025-08-29",
     "paid_date": "2025-09-09",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1172,15 +1172,15 @@
     "tax": 0,
     "gross": 1949.91,
     "status": "PAID",
-    "function": "",
-    "month": "2025-08-29T00:00:00"
+    "function": "AMA002",
+    "month": "2025-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0095",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-08-29T00:00:00",
+    "date": "2025-08-29",
     "paid_date": "2025-09-09",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1193,15 +1193,15 @@
     "tax": 0,
     "gross": 3899.83,
     "status": "PAID",
-    "function": "",
-    "month": "2025-08-29T00:00:00"
+    "function": "AMA002",
+    "month": "2025-08-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0092",
     "type": "INV",
     "contact": "Captiv8 Inc.",
-    "date": "2025-07-28T00:00:00",
+    "date": "2025-07-28",
     "paid_date": "2025-09-23",
     "item_code": "",
     "account_code": "250",
@@ -1214,15 +1214,15 @@
     "tax": 0,
     "gross": 10773.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-07-28T00:00:00"
+    "function": "CAP002",
+    "month": "2025-07-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0092",
     "type": "INV",
     "contact": "Captiv8 Inc.",
-    "date": "2025-07-28T00:00:00",
+    "date": "2025-07-28",
     "paid_date": "2025-09-23",
     "item_code": "",
     "account_code": "250",
@@ -1235,15 +1235,15 @@
     "tax": 0,
     "gross": 7182.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-07-28T00:00:00"
+    "function": "CAP002",
+    "month": "2025-07-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0093",
     "type": "INV",
     "contact": "Captiv8 Inc.",
-    "date": "2025-07-31T00:00:00",
+    "date": "2025-07-31",
     "paid_date": "2025-09-23",
     "item_code": "",
     "account_code": "250",
@@ -1256,15 +1256,15 @@
     "tax": 0,
     "gross": 3591.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-07-31T00:00:00"
+    "function": "CAP002",
+    "month": "2025-07-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0098",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-18T00:00:00",
+    "date": "2025-09-18",
     "paid_date": "2025-09-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1277,15 +1277,15 @@
     "tax": 0,
     "gross": 8748.57,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0098",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-18T00:00:00",
+    "date": "2025-09-18",
     "paid_date": "2025-09-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1298,15 +1298,15 @@
     "tax": 0,
     "gross": 6804.45,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0098",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-18T00:00:00",
+    "date": "2025-09-18",
     "paid_date": "2025-09-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1319,15 +1319,15 @@
     "tax": 0,
     "gross": 6804.45,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0094",
     "type": "INV",
     "contact": "Leo New York",
-    "date": "2025-09-17T00:00:00",
+    "date": "2025-09-17",
     "paid_date": "2025-10-01",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1340,15 +1340,15 @@
     "tax": 0,
     "gross": 19949.2,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-17T00:00:00"
+    "function": "PUB001",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0102",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-02T00:00:00",
+    "date": "2025-10-02",
     "paid_date": null,
     "item_code": "",
     "account_code": "",
@@ -1361,15 +1361,15 @@
     "tax": 0,
     "gross": 0,
     "status": "DELETED",
-    "function": "",
-    "month": "2025-10-02T00:00:00"
+    "function": "2D-17814667",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0099",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-19T00:00:00",
+    "date": "2025-09-19",
     "paid_date": "2025-10-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1382,15 +1382,15 @@
     "tax": 0,
     "gross": 2923.97,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-19T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0101",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-25T00:00:00",
+    "date": "2025-09-25",
     "paid_date": "2025-10-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1403,15 +1403,15 @@
     "tax": 0,
     "gross": 974.66,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-25T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0096",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-19T00:00:00",
+    "date": "2025-09-19",
     "paid_date": "2025-10-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1424,15 +1424,15 @@
     "tax": 0,
     "gross": 5847.94,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-19T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0096",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-19T00:00:00",
+    "date": "2025-09-19",
     "paid_date": "2025-10-02",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1445,15 +1445,15 @@
     "tax": 0,
     "gross": 3898.63,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-19T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0096",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-19T00:00:00",
+    "date": "2025-09-19",
     "paid_date": "2025-10-02",
     "item_code": "",
     "account_code": "250",
@@ -1466,15 +1466,15 @@
     "tax": 0,
     "gross": 1949.31,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-19T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0100",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-09-25T00:00:00",
+    "date": "2025-09-25",
     "paid_date": "2025-10-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1487,15 +1487,15 @@
     "tax": 0,
     "gross": 7797.26,
     "status": "PAID",
-    "function": "",
-    "month": "2025-09-25T00:00:00"
+    "function": "AMA002",
+    "month": "2025-09-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0105",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-07T00:00:00",
+    "date": "2025-10-07",
     "paid_date": null,
     "item_code": "",
     "account_code": "",
@@ -1509,14 +1509,14 @@
     "gross": 0,
     "status": "DELETED",
     "function": "",
-    "month": "2025-10-07T00:00:00"
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0103",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-02T00:00:00",
+    "date": "2025-10-02",
     "paid_date": "2025-10-16",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1529,15 +1529,15 @@
     "tax": 0,
     "gross": 1949.51,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-02T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0103",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-02T00:00:00",
+    "date": "2025-10-02",
     "paid_date": "2025-10-16",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1550,15 +1550,15 @@
     "tax": 0,
     "gross": 3899.03,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-02T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0103",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-02T00:00:00",
+    "date": "2025-10-02",
     "paid_date": "2025-10-16",
     "item_code": "",
     "account_code": "250",
@@ -1571,15 +1571,15 @@
     "tax": 0,
     "gross": 974.76,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-02T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0106",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-07T00:00:00",
+    "date": "2025-10-07",
     "paid_date": "2025-10-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1592,15 +1592,15 @@
     "tax": 0,
     "gross": 11707.86,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0106",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-07T00:00:00",
+    "date": "2025-10-07",
     "paid_date": "2025-10-20",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1613,15 +1613,15 @@
     "tax": 0,
     "gross": 3902.62,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0106",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-07T00:00:00",
+    "date": "2025-10-07",
     "paid_date": "2025-10-20",
     "item_code": "EH-003",
     "account_code": "410",
@@ -1634,15 +1634,15 @@
     "tax": 0,
     "gross": 5853.93,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0107",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-21T00:00:00",
+    "date": "2025-10-21",
     "paid_date": "2025-10-27",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1655,15 +1655,15 @@
     "tax": 0,
     "gross": 1949.31,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-21T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0107",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-21T00:00:00",
+    "date": "2025-10-21",
     "paid_date": "2025-10-27",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1676,15 +1676,15 @@
     "tax": 0,
     "gross": 3898.63,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-21T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0104",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-16T00:00:00",
+    "date": "2025-10-16",
     "paid_date": "2025-10-27",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1697,15 +1697,15 @@
     "tax": 0,
     "gross": 1949.31,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-16T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0104",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-16T00:00:00",
+    "date": "2025-10-16",
     "paid_date": "2025-10-27",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1718,15 +1718,15 @@
     "tax": 0,
     "gross": 3898.63,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-16T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0109",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-10-28T00:00:00",
+    "date": "2025-10-28",
     "paid_date": "2025-11-10",
     "item_code": "EH-004",
     "account_code": "250",
@@ -1739,15 +1739,15 @@
     "tax": 0,
     "gross": 972.36,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-28T00:00:00"
+    "function": "AMA002",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0110",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-05T00:00:00",
+    "date": "2025-11-05",
     "paid_date": "2025-11-10",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1760,15 +1760,15 @@
     "tax": 0,
     "gross": 5834.18,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-05T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0110",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-05T00:00:00",
+    "date": "2025-11-05",
     "paid_date": "2025-11-10",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1781,15 +1781,15 @@
     "tax": 0,
     "gross": 3889.45,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-05T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0111",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-07T00:00:00",
+    "date": "2025-11-07",
     "paid_date": "2025-11-12",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1802,15 +1802,15 @@
     "tax": 0,
     "gross": 7776.51,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0111",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-07T00:00:00",
+    "date": "2025-11-07",
     "paid_date": "2025-11-12",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1823,15 +1823,15 @@
     "tax": 0,
     "gross": 3888.26,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0112",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-07T00:00:00",
+    "date": "2025-11-07",
     "paid_date": "2025-11-12",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1844,15 +1844,15 @@
     "tax": 0,
     "gross": 1944.13,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0112",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-07T00:00:00",
+    "date": "2025-11-07",
     "paid_date": "2025-11-12",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1865,15 +1865,15 @@
     "tax": 0,
     "gross": 3888.26,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0112",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-07T00:00:00",
+    "date": "2025-11-07",
     "paid_date": "2025-11-12",
     "item_code": "EH-003",
     "account_code": "250",
@@ -1886,15 +1886,15 @@
     "tax": 0,
     "gross": 972.06,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-07T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0113",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-11T00:00:00",
+    "date": "2025-11-11",
     "paid_date": "2025-11-17",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1907,15 +1907,15 @@
     "tax": 0,
     "gross": 5835.38,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-11T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0113",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-11T00:00:00",
+    "date": "2025-11-11",
     "paid_date": "2025-11-17",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1928,15 +1928,15 @@
     "tax": 0,
     "gross": 3890.25,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-11T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0116",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-14T00:00:00",
+    "date": "2025-11-14",
     "paid_date": "2025-11-25",
     "item_code": "EH-003",
     "account_code": "250",
@@ -1949,15 +1949,15 @@
     "tax": 0,
     "gross": 972.46,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-14T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0117",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-20T00:00:00",
+    "date": "2025-11-20",
     "paid_date": "2025-11-25",
     "item_code": "EH-001",
     "account_code": "250",
@@ -1970,15 +1970,15 @@
     "tax": 0,
     "gross": 1944.93,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-20T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0117",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-20T00:00:00",
+    "date": "2025-11-20",
     "paid_date": "2025-11-25",
     "item_code": "EH-002",
     "account_code": "250",
@@ -1991,15 +1991,15 @@
     "tax": 0,
     "gross": 3889.85,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-20T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0108",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-10-23T00:00:00",
+    "date": "2025-10-23",
     "paid_date": "2025-11-28",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2012,15 +2012,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-23T00:00:00"
+    "function": "BER001",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0108",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-10-23T00:00:00",
+    "date": "2025-10-23",
     "paid_date": "2025-11-28",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2033,15 +2033,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-10-23T00:00:00"
+    "function": "BER001",
+    "month": "2025-10-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0118",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-27T00:00:00",
+    "date": "2025-11-27",
     "paid_date": "2025-12-04",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2054,15 +2054,15 @@
     "tax": 0,
     "gross": 1944.53,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-27T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0118",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-27T00:00:00",
+    "date": "2025-11-27",
     "paid_date": "2025-12-04",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2075,15 +2075,15 @@
     "tax": 0,
     "gross": 3889.05,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-27T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0120",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-01T00:00:00",
+    "date": "2025-12-01",
     "paid_date": "2025-12-04",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2096,15 +2096,15 @@
     "tax": 0,
     "gross": 1944.53,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-01T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0120",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-01T00:00:00",
+    "date": "2025-12-01",
     "paid_date": "2025-12-04",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2117,15 +2117,15 @@
     "tax": 0,
     "gross": 3889.05,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-01T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0119",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-28T00:00:00",
+    "date": "2025-11-28",
     "paid_date": "2025-12-04",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2138,15 +2138,15 @@
     "tax": 0,
     "gross": 1944.53,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-28T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0119",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-11-28T00:00:00",
+    "date": "2025-11-28",
     "paid_date": "2025-12-04",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2159,15 +2159,15 @@
     "tax": 0,
     "gross": 3889.05,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-28T00:00:00"
+    "function": "AMA002",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0124",
     "type": "INV",
     "contact": "Element Human Group Limited",
-    "date": "2025-11-30T00:00:00",
+    "date": "2025-11-30",
     "paid_date": "2025-11-30",
     "item_code": "",
     "account_code": "491",
@@ -2180,15 +2180,15 @@
     "tax": 0,
     "gross": 157965.63,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-30T00:00:00"
+    "function": "80 - G&A",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0123",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-04T00:00:00",
+    "date": "2025-12-04",
     "paid_date": "2025-12-09",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2201,15 +2201,15 @@
     "tax": 0,
     "gross": 1944.13,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-04T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0123",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-04T00:00:00",
+    "date": "2025-12-04",
     "paid_date": "2025-12-09",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2222,15 +2222,15 @@
     "tax": 0,
     "gross": 3888.26,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-04T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0125",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-08T00:00:00",
+    "date": "2025-12-08",
     "paid_date": "2025-12-12",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2243,15 +2243,15 @@
     "tax": 0,
     "gross": 5829.99,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-08T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0125",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-08T00:00:00",
+    "date": "2025-12-08",
     "paid_date": "2025-12-12",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2264,15 +2264,15 @@
     "tax": 0,
     "gross": 3886.66,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-08T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0125",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-08T00:00:00",
+    "date": "2025-12-08",
     "paid_date": "2025-12-12",
     "item_code": "EH-003",
     "account_code": "250",
@@ -2285,15 +2285,15 @@
     "tax": 0,
     "gross": 971.66,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-08T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0121",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-03T00:00:00",
+    "date": "2025-12-03",
     "paid_date": "2025-12-05",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2306,15 +2306,15 @@
     "tax": 0,
     "gross": 3887.06,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-03T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0121",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-03T00:00:00",
+    "date": "2025-12-03",
     "paid_date": "2025-12-05",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2327,15 +2327,15 @@
     "tax": 0,
     "gross": 3887.06,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-03T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0121",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-03T00:00:00",
+    "date": "2025-12-03",
     "paid_date": "2025-12-05",
     "item_code": "EH-003",
     "account_code": "250",
@@ -2348,15 +2348,15 @@
     "tax": 0,
     "gross": 971.76,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-03T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0122",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-03T00:00:00",
+    "date": "2025-12-03",
     "paid_date": "2025-12-05",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2369,15 +2369,15 @@
     "tax": 0,
     "gross": 3887.06,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-03T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0122",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-03T00:00:00",
+    "date": "2025-12-03",
     "paid_date": "2025-12-05",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2390,15 +2390,15 @@
     "tax": 0,
     "gross": 3887.06,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-03T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0122",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-03T00:00:00",
+    "date": "2025-12-03",
     "paid_date": "2025-12-05",
     "item_code": "EH-003",
     "account_code": "250",
@@ -2411,15 +2411,15 @@
     "tax": 0,
     "gross": 971.76,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-03T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0131",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-22T00:00:00",
+    "date": "2025-12-22",
     "paid_date": "2026-01-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2432,15 +2432,15 @@
     "tax": 0,
     "gross": 5843.16,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-22T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0131",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-22T00:00:00",
+    "date": "2025-12-22",
     "paid_date": "2026-01-02",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2453,15 +2453,15 @@
     "tax": 0,
     "gross": 3895.44,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-22T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0134",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-24T00:00:00",
+    "date": "2025-12-24",
     "paid_date": "2026-01-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2474,15 +2474,15 @@
     "tax": 0,
     "gross": 5843.16,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-24T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0134",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-24T00:00:00",
+    "date": "2025-12-24",
     "paid_date": "2026-01-02",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2495,15 +2495,15 @@
     "tax": 0,
     "gross": 3895.44,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-24T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0127",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-18T00:00:00",
+    "date": "2025-12-18",
     "paid_date": "2026-01-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2516,15 +2516,15 @@
     "tax": 0,
     "gross": 5843.16,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0127",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-18T00:00:00",
+    "date": "2025-12-18",
     "paid_date": "2026-01-02",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2537,15 +2537,15 @@
     "tax": 0,
     "gross": 3895.44,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0129",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-18T00:00:00",
+    "date": "2025-12-18",
     "paid_date": "2026-01-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2558,15 +2558,15 @@
     "tax": 0,
     "gross": 11686.31,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0132",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-22T00:00:00",
+    "date": "2025-12-22",
     "paid_date": "2026-01-02",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2579,15 +2579,15 @@
     "tax": 0,
     "gross": 5843.16,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-22T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0132",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-22T00:00:00",
+    "date": "2025-12-22",
     "paid_date": "2026-01-02",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2600,15 +2600,15 @@
     "tax": 0,
     "gross": 3895.44,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-22T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0114",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-11-12T00:00:00",
+    "date": "2025-11-12",
     "paid_date": "2026-01-05",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2621,15 +2621,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-12T00:00:00"
+    "function": "BER001",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0114",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-11-12T00:00:00",
+    "date": "2025-11-12",
     "paid_date": "2026-01-05",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2642,15 +2642,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-12T00:00:00"
+    "function": "BER001",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0115",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-11-13T00:00:00",
+    "date": "2025-11-13",
     "paid_date": "2026-01-05",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2663,15 +2663,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-13T00:00:00"
+    "function": "BER001",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0115",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2025-11-13T00:00:00",
+    "date": "2025-11-13",
     "paid_date": "2026-01-05",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2684,15 +2684,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-11-13T00:00:00"
+    "function": "BER001",
+    "month": "2025-11-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0135",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-05T00:00:00",
+    "date": "2026-01-05",
     "paid_date": "2026-01-07",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2705,15 +2705,15 @@
     "tax": 0,
     "gross": 3887.06,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-05T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0135",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-05T00:00:00",
+    "date": "2026-01-05",
     "paid_date": "2026-01-07",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2726,15 +2726,15 @@
     "tax": 0,
     "gross": 3887.06,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-05T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0136",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-05T00:00:00",
+    "date": "2026-01-05",
     "paid_date": "2026-01-07",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2747,15 +2747,15 @@
     "tax": 0,
     "gross": 5830.59,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-05T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0136",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-05T00:00:00",
+    "date": "2026-01-05",
     "paid_date": "2026-01-07",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2768,15 +2768,15 @@
     "tax": 0,
     "gross": 3887.06,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-05T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0138",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-19T00:00:00",
+    "date": "2026-01-19",
     "paid_date": "2026-01-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2789,15 +2789,15 @@
     "tax": 0,
     "gross": 3884.66,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-19T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0138",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-19T00:00:00",
+    "date": "2026-01-19",
     "paid_date": "2026-01-23",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2810,15 +2810,15 @@
     "tax": 0,
     "gross": 1942.33,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-19T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0137",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-08T00:00:00",
+    "date": "2026-01-08",
     "paid_date": "2026-01-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2831,15 +2831,15 @@
     "tax": 0,
     "gross": 3884.66,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-08T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0133",
     "type": "INV",
     "contact": "Captiv8 Inc.",
-    "date": "2025-12-23T00:00:00",
+    "date": "2025-12-23",
     "paid_date": "2026-02-06",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2852,15 +2852,15 @@
     "tax": 0,
     "gross": 15960.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-23T00:00:00"
+    "function": "CAP002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0128",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-18T00:00:00",
+    "date": "2025-12-18",
     "paid_date": "2026-02-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2873,15 +2873,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0128",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-18T00:00:00",
+    "date": "2025-12-18",
     "paid_date": "2026-02-23",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2894,15 +2894,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0128",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2025-12-18T00:00:00",
+    "date": "2025-12-18",
     "paid_date": "2026-02-23",
     "item_code": "EH-003",
     "account_code": "250",
@@ -2915,15 +2915,15 @@
     "tax": 0,
     "gross": 997.5,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-18T00:00:00"
+    "function": "AMA002",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0155",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": null,
     "item_code": "EH-001",
     "account_code": "250",
@@ -2936,15 +2936,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "DELETED",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "CRE001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0155",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": null,
     "item_code": "EH-002",
     "account_code": "250",
@@ -2957,15 +2957,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "DELETED",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "CRE001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0126",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2025-12-15T00:00:00",
+    "date": "2025-12-15",
     "paid_date": "2026-03-04",
     "item_code": "EH-001",
     "account_code": "250",
@@ -2978,15 +2978,15 @@
     "tax": 0,
     "gross": 23940.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-15T00:00:00"
+    "function": "CRE001",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0126",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2025-12-15T00:00:00",
+    "date": "2025-12-15",
     "paid_date": "2026-03-04",
     "item_code": "EH-002",
     "account_code": "250",
@@ -2999,15 +2999,15 @@
     "tax": 0,
     "gross": 15960.0,
     "status": "PAID",
-    "function": "",
-    "month": "2025-12-15T00:00:00"
+    "function": "CRE001",
+    "month": "2025-12-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0141",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-01-22T00:00:00",
+    "date": "2026-01-22",
     "paid_date": "2026-03-13",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3020,15 +3020,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-22T00:00:00"
+    "function": "BER001",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0141",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-01-22T00:00:00",
+    "date": "2026-01-22",
     "paid_date": "2026-03-13",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3041,15 +3041,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-22T00:00:00"
+    "function": "BER001",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0143",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-09T00:00:00",
+    "date": "2026-02-09",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3062,15 +3062,15 @@
     "tax": 0,
     "gross": 7980.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-09T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0144",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-09T00:00:00",
+    "date": "2026-02-09",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3083,15 +3083,15 @@
     "tax": 0,
     "gross": 7980.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-09T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0145",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-09T00:00:00",
+    "date": "2026-02-09",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3104,15 +3104,15 @@
     "tax": 0,
     "gross": 15960.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-09T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0146",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-11T00:00:00",
+    "date": "2026-02-11",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3125,15 +3125,15 @@
     "tax": 0,
     "gross": 7980.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-11T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0146",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-11T00:00:00",
+    "date": "2026-02-11",
     "paid_date": "2026-03-20",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3146,15 +3146,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-11T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0146",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-11T00:00:00",
+    "date": "2026-02-11",
     "paid_date": "2026-03-20",
     "item_code": "EH-003",
     "account_code": "250",
@@ -3167,15 +3167,15 @@
     "tax": 0,
     "gross": 997.5,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-11T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0148",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-23T00:00:00",
+    "date": "2026-02-23",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3188,15 +3188,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-23T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0148",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-23T00:00:00",
+    "date": "2026-02-23",
     "paid_date": "2026-03-20",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3209,15 +3209,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-23T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0149",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-23T00:00:00",
+    "date": "2026-02-23",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3230,15 +3230,15 @@
     "tax": 0,
     "gross": 5985.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-23T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0149",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-02-23T00:00:00",
+    "date": "2026-02-23",
     "paid_date": "2026-03-20",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3251,15 +3251,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-23T00:00:00"
+    "function": "AMA002",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0152",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-02T00:00:00",
+    "date": "2026-03-02",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3272,15 +3272,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0153",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-02T00:00:00",
+    "date": "2026-03-02",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3293,15 +3293,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0154",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-02T00:00:00",
+    "date": "2026-03-02",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3314,15 +3314,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0156",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-06T00:00:00",
+    "date": "2026-03-06",
     "paid_date": "2026-03-20",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3335,15 +3335,15 @@
     "tax": 0,
     "gross": 5985.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-06T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0156",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-06T00:00:00",
+    "date": "2026-03-06",
     "paid_date": "2026-03-20",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3356,15 +3356,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-06T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0156",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-06T00:00:00",
+    "date": "2026-03-06",
     "paid_date": "2026-03-20",
     "item_code": "EH-003",
     "account_code": "250",
@@ -3377,15 +3377,15 @@
     "tax": 0,
     "gross": 997.5,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-06T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0142",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-23T00:00:00",
+    "date": "2026-01-23",
     "paid_date": "2026-03-24",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3398,15 +3398,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-23T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0142",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-23T00:00:00",
+    "date": "2026-01-23",
     "paid_date": "2026-03-24",
     "item_code": "EH-003",
     "account_code": "250",
@@ -3419,15 +3419,15 @@
     "tax": 0,
     "gross": 997.5,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-23T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0139",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-22T00:00:00",
+    "date": "2026-01-22",
     "paid_date": "2026-03-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3440,15 +3440,15 @@
     "tax": 0,
     "gross": 7980.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-22T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0140",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-01-22T00:00:00",
+    "date": "2026-01-22",
     "paid_date": "2026-03-23",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3461,15 +3461,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-01-22T00:00:00"
+    "function": "AMA002",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0174",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-01-22T00:00:00",
+    "date": "2026-01-22",
     "paid_date": null,
     "item_code": "EH-001",
     "account_code": "250",
@@ -3482,15 +3482,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "VOIDED",
-    "function": "",
-    "month": "2026-01-22T00:00:00"
+    "function": "BER001",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0174",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-01-22T00:00:00",
+    "date": "2026-01-22",
     "paid_date": null,
     "item_code": "EH-002",
     "account_code": "250",
@@ -3503,15 +3503,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "VOIDED",
-    "function": "",
-    "month": "2026-01-22T00:00:00"
+    "function": "BER001",
+    "month": "2026-01-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0157",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-03-09T00:00:00",
+    "date": "2026-03-09",
     "paid_date": "2026-04-17",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3524,15 +3524,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-09T00:00:00"
+    "function": "BER001",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0157",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-03-09T00:00:00",
+    "date": "2026-03-09",
     "paid_date": "2026-04-17",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3545,15 +3545,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-09T00:00:00"
+    "function": "BER001",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0150",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": "2026-04-17",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3566,15 +3566,15 @@
     "tax": 0,
     "gross": 5985.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "BER001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0150",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": "2026-04-17",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3587,15 +3587,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "BER001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0151",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": "2026-04-17",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3608,15 +3608,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "BER001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0151",
     "type": "INV",
     "contact": "Harris Poll US LLC (Attn: BERA + POC in BERA's team)",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": "2026-04-17",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3629,15 +3629,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "BER001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0176",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-21T00:00:00",
+    "date": "2026-04-21",
     "paid_date": null,
     "item_code": "EH-002",
     "account_code": "250",
@@ -3650,15 +3650,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-04-21T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0173",
     "type": "INV",
     "contact": "Mail Media Inc.",
-    "date": "2026-04-13T00:00:00",
+    "date": "2026-04-13",
     "paid_date": null,
     "item_code": "EH-001",
     "account_code": "250",
@@ -3671,15 +3671,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-04-13T00:00:00"
+    "function": "DMG002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0147",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": "2026-04-24",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3692,15 +3692,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "CRE001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0147",
     "type": "INV",
     "contact": "Creo Influencer LLC",
-    "date": "2026-02-27T00:00:00",
+    "date": "2026-02-27",
     "paid_date": "2026-04-24",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3713,15 +3713,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-02-27T00:00:00"
+    "function": "CRE001",
+    "month": "2026-02-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0159",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-12T00:00:00",
+    "date": "2026-03-12",
     "paid_date": "2026-05-06",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3734,15 +3734,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-12T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0158",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-10T00:00:00",
+    "date": "2026-03-10",
     "paid_date": "2026-05-11",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3755,15 +3755,15 @@
     "tax": 0,
     "gross": 7980.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-10T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0158",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-10T00:00:00",
+    "date": "2026-03-10",
     "paid_date": "2026-05-11",
     "item_code": "EH-002",
     "account_code": "250",
@@ -3776,15 +3776,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-10T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0158",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-10T00:00:00",
+    "date": "2026-03-10",
     "paid_date": "2026-05-11",
     "item_code": "EH-003",
     "account_code": "250",
@@ -3797,15 +3797,15 @@
     "tax": 0,
     "gross": 997.5,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-10T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0161",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-17T00:00:00",
+    "date": "2026-03-17",
     "paid_date": "2026-05-18",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3818,15 +3818,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-17T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0160",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-17T00:00:00",
+    "date": "2026-03-17",
     "paid_date": "2026-05-18",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3839,15 +3839,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-17T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0162",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-17T00:00:00",
+    "date": "2026-03-17",
     "paid_date": "2026-05-18",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3860,15 +3860,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-17T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0163",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-17T00:00:00",
+    "date": "2026-03-17",
     "paid_date": "2026-05-18",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3881,15 +3881,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-17T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0180",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-05-21T00:00:00",
+    "date": "2026-05-21",
     "paid_date": null,
     "item_code": "EH-001",
     "account_code": "250",
@@ -3902,15 +3902,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-05-21T00:00:00"
+    "function": "AMA002",
+    "month": "2026-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0180",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-05-21T00:00:00",
+    "date": "2026-05-21",
     "paid_date": null,
     "item_code": "EH-002",
     "account_code": "250",
@@ -3923,15 +3923,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-05-21T00:00:00"
+    "function": "AMA002",
+    "month": "2026-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0181",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-05-28T00:00:00",
+    "date": "2026-05-28",
     "paid_date": null,
     "item_code": "EH-001",
     "account_code": "250",
@@ -3944,15 +3944,15 @@
     "tax": 0,
     "gross": 32049.68,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-05-28T00:00:00"
+    "function": "AMA002",
+    "month": "2026-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0181",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-05-28T00:00:00",
+    "date": "2026-05-28",
     "paid_date": null,
     "item_code": "EH-002",
     "account_code": "250",
@@ -3965,15 +3965,15 @@
     "tax": 0,
     "gross": 19950.0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-05-28T00:00:00"
+    "function": "AMA002",
+    "month": "2026-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0165",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-30T00:00:00",
+    "date": "2026-03-30",
     "paid_date": "2026-05-29",
     "item_code": "EH-001",
     "account_code": "250",
@@ -3986,15 +3986,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-30T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0165",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-30T00:00:00",
+    "date": "2026-03-30",
     "paid_date": "2026-05-29",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4007,15 +4007,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-30T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0167",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-30T00:00:00",
+    "date": "2026-03-30",
     "paid_date": "2026-05-29",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4028,15 +4028,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-30T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0167",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-30T00:00:00",
+    "date": "2026-03-30",
     "paid_date": "2026-05-29",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4049,15 +4049,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-30T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0166",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-30T00:00:00",
+    "date": "2026-03-30",
     "paid_date": "2026-05-29",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4070,15 +4070,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-30T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0166",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-03-30T00:00:00",
+    "date": "2026-03-30",
     "paid_date": "2026-05-29",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4091,15 +4091,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-03-30T00:00:00"
+    "function": "AMA002",
+    "month": "2026-03-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0170",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-01T00:00:00",
+    "date": "2026-04-01",
     "paid_date": "2026-06-01",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4112,15 +4112,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-01T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0169",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-02T00:00:00",
+    "date": "2026-04-02",
     "paid_date": "2026-06-01",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4133,15 +4133,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0169",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-02T00:00:00",
+    "date": "2026-04-02",
     "paid_date": "2026-06-01",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4154,15 +4154,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0168",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-02T00:00:00",
+    "date": "2026-04-02",
     "paid_date": "2026-06-01",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4175,15 +4175,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0168",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-02T00:00:00",
+    "date": "2026-04-02",
     "paid_date": "2026-06-01",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4196,15 +4196,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0171",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-02T00:00:00",
+    "date": "2026-04-02",
     "paid_date": "2026-06-01",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4217,15 +4217,15 @@
     "tax": 0,
     "gross": 11970.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0183",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-06-02T00:00:00",
+    "date": "2026-06-02",
     "paid_date": null,
     "item_code": "EH-001",
     "account_code": "250",
@@ -4238,15 +4238,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-06-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0183",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-06-02T00:00:00",
+    "date": "2026-06-02",
     "paid_date": null,
     "item_code": "EH-002",
     "account_code": "250",
@@ -4259,15 +4259,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-06-02T00:00:00"
+    "function": "AMA002",
+    "month": "2026-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0183",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-06-02T00:00:00",
+    "date": "2026-06-02",
     "paid_date": null,
     "item_code": "",
     "account_code": "",
@@ -4280,15 +4280,15 @@
     "tax": 0,
     "gross": 0,
     "status": "AUTHORISED",
-    "function": "",
-    "month": "2026-06-02T00:00:00"
+    "function": "2D-20081005",
+    "month": "2026-06-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0172",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-09T00:00:00",
+    "date": "2026-04-09",
     "paid_date": "2026-06-03",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4301,15 +4301,15 @@
     "tax": 0,
     "gross": 997.5,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-09T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0175",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-21T00:00:00",
+    "date": "2026-04-21",
     "paid_date": "2026-06-03",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4322,15 +4322,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-21T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0177",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-27T00:00:00",
+    "date": "2026-04-27",
     "paid_date": "2026-06-03",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4343,15 +4343,15 @@
     "tax": 0,
     "gross": 1995.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-27T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0177",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-04-27T00:00:00",
+    "date": "2026-04-27",
     "paid_date": "2026-06-03",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4364,15 +4364,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-04-27T00:00:00"
+    "function": "AMA002",
+    "month": "2026-04-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0179",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-05-08T00:00:00",
+    "date": "2026-05-08",
     "paid_date": "2026-06-03",
     "item_code": "EH-001",
     "account_code": "250",
@@ -4385,15 +4385,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-05-08T00:00:00"
+    "function": "AMA002",
+    "month": "2026-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0179",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-05-08T00:00:00",
+    "date": "2026-05-08",
     "paid_date": "2026-06-03",
     "item_code": "EH-002",
     "account_code": "250",
@@ -4406,15 +4406,15 @@
     "tax": 0,
     "gross": 3990.0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-05-08T00:00:00"
+    "function": "AMA002",
+    "month": "2026-05-01"
   },
   {
     "entity": "EHRL",
     "invoice_number": "INV-0918-0179",
     "type": "INV",
     "contact": "Amazon Advertising LLC",
-    "date": "2026-05-08T00:00:00",
+    "date": "2026-05-08",
     "paid_date": "2026-06-03",
     "item_code": "",
     "account_code": "",
@@ -4427,7 +4427,7 @@
     "tax": 0,
     "gross": 0,
     "status": "PAID",
-    "function": "",
-    "month": "2026-05-08T00:00:00"
+    "function": "2D-20081005",
+    "month": "2026-05-01"
   }
 ]
