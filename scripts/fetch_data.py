@@ -1,6 +1,6 @@
 """
 EH Finance Dashboard — Xero Data Pipeline
-Pulls invoice detail and account transactions from Xero for EHL and EHRL.
+Pulls invoice, manual journal, and trial balance data from Xero for EHL and EHRL.
 Writes clean JSON files to /data/ for the Streamlit app to consume.
 """
 
@@ -10,6 +10,7 @@ import time
 import requests
 import base64
 from datetime import datetime, date
+from dateutil.relativedelta import relativedelta
 from nacl.public import PublicKey, SealedBox
 
 
@@ -21,6 +22,7 @@ TENANTS = {
 }
 
 REVENUE_CODES = ["401", "402", "403", "409", "410", "411", "430"]
+DEFERRED_CODE = "250"
 
 HISTORY_FROM = "2024-01-01"
 
@@ -41,7 +43,6 @@ GH_REPO = os.environ["GH_REPO"]
 # ── Token Management ─────────────────────────────────────────────────────────
 
 def refresh_xero_token():
-    """Refresh the Xero OAuth token and write new tokens back to GitHub Secrets."""
     credentials = base64.b64encode(f"{XERO_CLIENT_ID}:{XERO_CLIENT_SECRET}".encode()).decode()
 
     response = requests.post(
@@ -60,17 +61,12 @@ def refresh_xero_token():
         raise Exception(f"Token refresh failed: {response.status_code} {response.text}")
 
     tokens = response.json()
-    new_access_token = tokens["access_token"]
-    new_refresh_token = tokens["refresh_token"]
-
-    _update_github_secret("XERO_ACCESS_TOKEN", new_access_token)
-    _update_github_secret("XERO_REFRESH_TOKEN", new_refresh_token)
-
-    return new_access_token
+    _update_github_secret("XERO_ACCESS_TOKEN", tokens["access_token"])
+    _update_github_secret("XERO_REFRESH_TOKEN", tokens["refresh_token"])
+    return tokens["access_token"]
 
 
 def _update_github_secret(secret_name, secret_value):
-    """Encrypt and update a GitHub Actions secret."""
     headers = {
         "Authorization": f"token {GH_PAT}",
         "Accept": "application/vnd.github+json",
@@ -82,26 +78,21 @@ def _update_github_secret(secret_name, secret_value):
     )
     key_response.raise_for_status()
     key_data = key_response.json()
-    public_key_id = key_data["key_id"]
-    public_key_bytes = base64.b64decode(key_data["key"])
 
-    public_key_obj = PublicKey(public_key_bytes)
-    sealed_box = SealedBox(public_key_obj)
-    encrypted = sealed_box.encrypt(secret_value.encode())
-    encrypted_b64 = base64.b64encode(encrypted).decode()
+    public_key_obj = PublicKey(base64.b64decode(key_data["key"]))
+    encrypted_b64 = base64.b64encode(SealedBox(public_key_obj).encrypt(secret_value.encode())).decode()
 
-    update_response = requests.put(
+    requests.put(
         f"https://api.github.com/repos/{GH_REPO}/actions/secrets/{secret_name}",
         headers=headers,
-        json={"encrypted_value": encrypted_b64, "key_id": public_key_id},
-    )
-    update_response.raise_for_status()
+        json={"encrypted_value": encrypted_b64, "key_id": key_data["key_id"]},
+    ).raise_for_status()
 
 
 # ── Xero API Helpers ─────────────────────────────────────────────────────────
 
 def xero_get(access_token, tenant_id, endpoint, params=None):
-    """Make a paginated GET request to the Xero API, returning all records."""
+    """Paginated GET — returns all records."""
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Xero-Tenant-Id": tenant_id,
@@ -131,13 +122,7 @@ def xero_get(access_token, tenant_id, endpoint, params=None):
             raise Exception(f"Xero API error [{endpoint}]: {response.status_code} {response.text[:500]}")
 
         data = response.json()
-
-        record_key = None
-        for key in data:
-            if isinstance(data[key], list):
-                record_key = key
-                break
-
+        record_key = next((k for k, v in data.items() if isinstance(v, list)), None)
         if not record_key:
             break
 
@@ -151,6 +136,26 @@ def xero_get(access_token, tenant_id, endpoint, params=None):
         time.sleep(0.5)
 
     return all_records
+
+
+def xero_report(access_token, tenant_id, report_name, params=None):
+    """Fetch a single Xero report."""
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Xero-Tenant-Id": tenant_id,
+        "Accept": "application/json",
+    }
+    response = requests.get(
+        f"{XERO_API_BASE}/Reports/{report_name}",
+        headers=headers,
+        params=params or {},
+    )
+    if response.status_code == 429:
+        time.sleep(int(response.headers.get("Retry-After", 60)))
+        return xero_report(access_token, tenant_id, report_name, params)
+    if response.status_code != 200:
+        raise Exception(f"Xero report error [{report_name}]: {response.status_code} {response.text[:500]}")
+    return response.json()
 
 
 def serial_to_date(serial):
@@ -168,35 +173,54 @@ def serial_to_date(serial):
         return str(serial)
 
 
-# ── Invoice Detail Fetch ──────────────────────────────────────────────────────
+def month_start(date_str):
+    """Return YYYY-MM-01 for a given date string."""
+    try:
+        d = datetime.strptime(date_str, "%Y-%m-%d")
+        return date(d.year, d.month, 1).isoformat()
+    except Exception:
+        return date_str
+
+
+def extract_tracking(tracking_list):
+    """Extract Function and Sub-function from a Tracking array."""
+    function_val = ""
+    subfunction_val = ""
+    for t in (tracking_list or []):
+        name = t.get("Name", "")
+        option = t.get("Option", "")
+        if "function" in name.lower() and "sub" not in name.lower():
+            function_val = option
+        elif "sub" in name.lower():
+            subfunction_val = option
+    return function_val, subfunction_val
+
+
+# ── Invoice Fetch ─────────────────────────────────────────────────────────────
+
+CODE_NAMES = {
+    "401": "Recurring Revenue",
+    "402": "License Revenue",
+    "403": "Retained Revenue",
+    "409": "Overages",
+    "410": "Ad hoc Revenue",
+    "411": "Services Revenue",
+    "430": "Audience Recharges",
+    "490": "Inter-co Sales - EHL",
+    "491": "Inter-co Sales - EHGL",
+    "250": "Income in Advance",
+}
+
 
 def fetch_invoices(access_token, tenant_name, tenant_id):
-    """
-    Fetch all sales invoices for a tenant from HISTORY_FROM.
-    Returns a list of flat dicts, one per line item.
-    """
+    """Fetch all ACCREC invoices from HISTORY_FROM. One row per line item."""
     print(f"  Fetching invoices for {tenant_name}...")
 
-    params = {
+    invoices = xero_get(access_token, tenant_id, "Invoices", {
         "where": f'Type=="ACCREC" AND Date>=DateTime.Parse("{HISTORY_FROM}")',
         "unitdp": 4,
-    }
-
-    invoices = xero_get(access_token, tenant_id, "Invoices", params)
+    })
     print(f"    {len(invoices)} invoices retrieved")
-
-    code_map = {
-        "401": "Recurring Revenue",
-        "402": "License Revenue",
-        "403": "Retained Revenue",
-        "409": "Overages",
-        "410": "Ad hoc Revenue",
-        "411": "Services Revenue",
-        "430": "Audience Recharges",
-        "490": "Inter-co Sales - EHL",
-        "491": "Inter-co Sales - EHGL",
-        "250": "Income in Advance",
-    }
 
     rows = []
     for inv in invoices:
@@ -206,47 +230,20 @@ def fetch_invoices(access_token, tenant_name, tenant_id):
         contact_name = inv.get("Contact", {}).get("Name", "")
         inv_date = serial_to_date(inv.get("DateString") or inv.get("Date"))
         paid_date = serial_to_date(inv.get("FullyPaidOnDate"))
-
-        # Invoice-level tracking (fallback)
-        inv_tracking = inv.get("TrackingCategories", []) or []
-        inv_function = ""
-        for t in inv_tracking:
-            name = t.get("Name", "")
-            if "function" in name.lower() and "sub" not in name.lower():
-                inv_function = t.get("Option", "")
-
-        # Reference field as last resort
         reference = inv.get("Reference", "") or ""
+
+        inv_function, _ = extract_tracking(inv.get("TrackingCategories", []))
 
         for line in inv.get("LineItems", []):
             account_str = line.get("AccountCode", "")
             if isinstance(account_str, dict):
                 account_str = account_str.get("Code", "")
 
-            # Line-item tracking takes priority over invoice-level
-            function_val = ""
-            subfunction_val = ""
-            for t in (line.get("Tracking", []) or []):
-                name = t.get("Name", "")
-                option = t.get("Option", "")
-                if "function" in name.lower() and "sub" not in name.lower():
-                    function_val = option
-                elif "sub" in name.lower():
-                    subfunction_val = option
-
-            if not function_val:
-                function_val = inv_function
-            if not function_val:
-                function_val = reference
+            line_function, line_subfunction = extract_tracking(line.get("Tracking", []))
+            function_val = line_function or inv_function or reference
 
             net = line.get("LineAmount", 0) or 0
             tax = line.get("TaxAmount", 0) or 0
-
-            try:
-                d = datetime.strptime(inv_date, "%Y-%m-%d")
-                month = date(d.year, d.month, 1).isoformat()
-            except Exception:
-                month = inv_date
 
             rows.append({
                 "entity": tenant_name,
@@ -257,7 +254,7 @@ def fetch_invoices(access_token, tenant_name, tenant_id):
                 "paid_date": paid_date,
                 "item_code": line.get("ItemCode", ""),
                 "account_code": str(account_str),
-                "account_name": code_map.get(str(account_str), str(account_str)),
+                "account_name": CODE_NAMES.get(str(account_str), str(account_str)),
                 "description": line.get("Description", ""),
                 "quantity": line.get("Quantity", 0) or 0,
                 "unit_price": line.get("UnitAmount", 0) or 0,
@@ -267,78 +264,125 @@ def fetch_invoices(access_token, tenant_name, tenant_id):
                 "gross": net + tax,
                 "status": inv_status,
                 "function": function_val,
-                "month": month,
+                "month": month_start(inv_date) if inv_date else None,
             })
 
     return rows
 
 
-# ── Account Transactions Fetch ────────────────────────────────────────────────
+# ── Manual Journals Fetch ────────────────────────────────────────────────────
 
-def fetch_account_transactions(access_token, tenant_name, tenant_id):
+def fetch_manual_journals(access_token, tenant_name, tenant_id):
     """
-    Fetch journal lines for revenue account codes from HISTORY_FROM.
-    Returns a list of flat dicts.
+    Fetch manual journal lines hitting revenue codes (401-430) from HISTORY_FROM.
+    These are the revenue recognition entries (DR 250, CR 4xx).
     """
-    print(f"  Fetching account transactions for {tenant_name}...")
+    print(f"  Fetching manual journals for {tenant_name}...")
 
-    code_map = {
-        "401": "Recurring Revenue",
-        "402": "License Revenue",
-        "403": "Retained Revenue",
-        "409": "Overages",
-        "410": "Ad hoc Revenue",
-        "411": "Services Revenue",
-        "430": "Audience Recharges",
-    }
+    journals = xero_get(access_token, tenant_id, "ManualJournals", {
+        "where": f'Date>=DateTime.Parse("{HISTORY_FROM}")',
+    })
+    print(f"    {len(journals)} manual journals retrieved")
 
-    all_rows = []
+    rows = []
+    for jnl in journals:
+        jnl_date = serial_to_date(jnl.get("DateString") or jnl.get("Date"))
+        narration = jnl.get("Narration", "") or ""
+        status = jnl.get("Status", "")
 
-    for code in REVENUE_CODES:
-        params = {
-            "where": f'Account.Code=="{code}" AND Date>=DateTime.Parse("{HISTORY_FROM}")',
-        }
+        if status == "DELETED":
+            continue
 
+        for line in jnl.get("JournalLines", []):
+            account_code = str(line.get("AccountCode", ""))
+            if account_code not in REVENUE_CODES:
+                continue
+
+            net = line.get("LineAmount", 0) or 0
+            # Revenue recognition: CR to revenue code is negative in Xero double-entry
+            # Flip sign so revenue is positive
+            net = -net if net < 0 else net
+
+            function_val, subfunction_val = extract_tracking(line.get("Tracking", []))
+
+            rows.append({
+                "entity": tenant_name,
+                "date": jnl_date,
+                "month": month_start(jnl_date) if jnl_date else None,
+                "account_code": account_code,
+                "account_name": CODE_NAMES.get(account_code, account_code),
+                "description": line.get("Description", "") or narration,
+                "narration": narration,
+                "net": net,
+                "tax": line.get("TaxAmount", 0) or 0,
+                "function": function_val,
+                "subfunction": subfunction_val,
+                "status": status,
+            })
+
+    print(f"    {len(rows)} revenue recognition lines extracted for {tenant_name}")
+    return rows
+
+
+# ── Trial Balance Snapshots ──────────────────────────────────────────────────
+
+def fetch_tb_snapshots(access_token, tenant_name, tenant_id):
+    """
+    Fetch Trial Balance as at each month-end from HISTORY_FROM to today.
+    Returns list of {date, account_250_balance} dicts.
+    """
+    print(f"  Fetching TB snapshots for {tenant_name}...")
+
+    history_start = datetime.strptime(HISTORY_FROM, "%Y-%m-%d")
+    today = datetime.utcnow()
+
+    # Build list of month-end dates
+    month_ends = []
+    current = date(history_start.year, history_start.month, 1)
+    while current <= today.date():
+        # Last day of the month
+        next_month = current + relativedelta(months=1)
+        month_end = next_month - relativedelta(days=1)
+        if month_end <= today.date():
+            month_ends.append(month_end.isoformat())
+        current = next_month
+
+    snapshots = []
+    for month_end_date in month_ends:
         try:
-            journals = xero_get(access_token, tenant_id, "Journals", params)
+            report = xero_report(access_token, tenant_id, "TrialBalance", {
+                "date": month_end_date,
+                "paymentsOnly": "false",
+            })
+
+            # Navigate the report rows to find account 250
+            balance_250 = 0.0
+            for section in report.get("Reports", [{}])[0].get("Rows", []):
+                for row in section.get("Rows", []):
+                    cells = row.get("Cells", [])
+                    if cells and str(cells[0].get("Value", "")).startswith("250"):
+                        # TB row: [Account, Debit, Credit, YTD Debit, YTD Credit]
+                        try:
+                            debit = float(cells[1].get("Value", 0) or 0)
+                            credit = float(cells[2].get("Value", 0) or 0)
+                            balance_250 = debit - credit
+                        except (ValueError, IndexError):
+                            pass
+                        break
+
+            snapshots.append({
+                "entity": tenant_name,
+                "date": month_end_date,
+                "month": month_start(month_end_date),
+                "account_250_balance": balance_250,
+            })
+            time.sleep(0.3)
+
         except Exception as e:
-            print(f"    Warning: could not fetch journals for code {code}: {e}")
-            journals = []
+            print(f"    Warning: TB fetch failed for {month_end_date}: {e}")
 
-        for journal in journals:
-            journal_date = serial_to_date(journal.get("JournalDate"))
-            source_type = journal.get("SourceType", "")
-            reference = journal.get("Reference", "")
-            narration = journal.get("Narration", "")
-
-            try:
-                d = datetime.strptime(journal_date, "%Y-%m-%d")
-                month = date(d.year, d.month, 1).isoformat()
-            except Exception:
-                month = journal_date
-
-            for line in journal.get("JournalLines", []):
-                line_account_code = line.get("AccountCode", "")
-                if str(line_account_code) not in REVENUE_CODES:
-                    continue
-
-                all_rows.append({
-                    "entity": tenant_name,
-                    "date": journal_date,
-                    "month": month,
-                    "account_code": str(line_account_code),
-                    "account_name": code_map.get(str(line_account_code), str(line_account_code)),
-                    "source_type": source_type,
-                    "description": narration or reference,
-                    "reference": reference,
-                    "net": line.get("NetAmount", 0) or 0,
-                    "gross": line.get("GrossAmount", 0) or 0,
-                    "tax": line.get("TaxAmount", 0) or 0,
-                    "contact": line.get("TaxName", ""),
-                })
-
-    print(f"    {len(all_rows)} transaction lines retrieved for {tenant_name}")
-    return all_rows
+    print(f"    {len(snapshots)} TB snapshots fetched for {tenant_name}")
+    return snapshots
 
 
 # ── Slack Notification ────────────────────────────────────────────────────────
@@ -351,57 +395,25 @@ def post_slack(blocks):
     )
 
 
-def build_slack_success(ehl_inv_count, ehrl_inv_count, ehl_tx_count, ehrl_tx_count, run_time):
+def build_slack_success(counts, run_time):
+    lines = "\n".join(f"• {k}: {v:,}" for k, v in counts.items())
     return [
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": f"*Finance Dashboard — Data Refresh Complete*\n{run_time}",
-            },
-        },
+        {"type": "section", "text": {"type": "mrkdwn",
+            "text": f"*Finance Dashboard — Data Refresh Complete*\n{run_time}"}},
         {"type": "divider"},
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": (
-                    f"*Invoices pulled*\n"
-                    f"• EHL: {ehl_inv_count:,} line items\n"
-                    f"• EHRL: {ehrl_inv_count:,} line items\n\n"
-                    f"*Account transactions pulled*\n"
-                    f"• EHL: {ehl_tx_count:,} lines\n"
-                    f"• EHRL: {ehrl_tx_count:,} lines"
-                ),
-            },
-        },
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "Data files updated in repo. Dashboard will reflect latest Xero data on next page load.",
-            },
-        },
+        {"type": "section", "text": {"type": "mrkdwn", "text": lines}},
+        {"type": "section", "text": {"type": "mrkdwn",
+            "text": "Data files updated. Dashboard will reflect latest Xero data on next page load."}},
     ]
 
 
 def build_slack_error(error_msg, run_time):
     return [
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": f"*Finance Dashboard — Data Refresh Failed*\n{run_time}",
-            },
-        },
+        {"type": "section", "text": {"type": "mrkdwn",
+            "text": f"*Finance Dashboard — Data Refresh Failed*\n{run_time}"}},
         {"type": "divider"},
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": f"*Error:*\n```{error_msg[:500]}```",
-            },
-        },
+        {"type": "section", "text": {"type": "mrkdwn",
+            "text": f"*Error:*\n```{error_msg[:500]}```"}},
     ]
 
 
@@ -416,50 +428,56 @@ def main():
         access_token = refresh_xero_token()
         print("Token refreshed.")
 
-        print("\nFetching invoice data...")
+        print("\nFetching invoices...")
         ehl_invoices = fetch_invoices(access_token, "EHL", TENANTS["EHL"])
         ehrl_invoices = fetch_invoices(access_token, "EHRL", TENANTS["EHRL"])
 
-        print("\nFetching account transactions...")
-        ehl_transactions = fetch_account_transactions(access_token, "EHL", TENANTS["EHL"])
-        ehrl_transactions = fetch_account_transactions(access_token, "EHRL", TENANTS["EHRL"])
+        print("\nFetching manual journals (recognised revenue)...")
+        ehl_journals = fetch_manual_journals(access_token, "EHL", TENANTS["EHL"])
+        ehrl_journals = fetch_manual_journals(access_token, "EHRL", TENANTS["EHRL"])
+
+        print("\nFetching trial balance snapshots (deferred revenue)...")
+        ehl_tb = fetch_tb_snapshots(access_token, "EHL", TENANTS["EHL"])
+        ehrl_tb = fetch_tb_snapshots(access_token, "EHRL", TENANTS["EHRL"])
 
         os.makedirs("data", exist_ok=True)
 
         with open("data/ehl_invoices.json", "w") as f:
             json.dump(ehl_invoices, f, indent=2)
-
         with open("data/ehrl_invoices.json", "w") as f:
             json.dump(ehrl_invoices, f, indent=2)
-
-        with open("data/ehl_transactions.json", "w") as f:
-            json.dump(ehl_transactions, f, indent=2)
-
-        with open("data/ehrl_transactions.json", "w") as f:
-            json.dump(ehrl_transactions, f, indent=2)
+        with open("data/ehl_journals.json", "w") as f:
+            json.dump(ehl_journals, f, indent=2)
+        with open("data/ehrl_journals.json", "w") as f:
+            json.dump(ehrl_journals, f, indent=2)
+        with open("data/tb_snapshots.json", "w") as f:
+            json.dump(ehl_tb + ehrl_tb, f, indent=2)
 
         metadata = {
             "last_refreshed": run_time,
             "ehl_invoice_lines": len(ehl_invoices),
             "ehrl_invoice_lines": len(ehrl_invoices),
-            "ehl_transaction_lines": len(ehl_transactions),
-            "ehrl_transaction_lines": len(ehrl_transactions),
+            "ehl_journal_lines": len(ehl_journals),
+            "ehrl_journal_lines": len(ehrl_journals),
+            "ehl_tb_snapshots": len(ehl_tb),
+            "ehrl_tb_snapshots": len(ehrl_tb),
             "from_date": HISTORY_FROM,
         }
         with open("data/metadata.json", "w") as f:
             json.dump(metadata, f, indent=2)
 
+        counts = {
+            "EHL invoice lines": len(ehl_invoices),
+            "EHRL invoice lines": len(ehrl_invoices),
+            "EHL recognised revenue lines": len(ehl_journals),
+            "EHRL recognised revenue lines": len(ehrl_journals),
+            "TB snapshots": len(ehl_tb) + len(ehrl_tb),
+        }
         print(f"\nData files written successfully.")
-        print(f"  EHL invoices: {len(ehl_invoices)} lines")
-        print(f"  EHRL invoices: {len(ehrl_invoices)} lines")
-        print(f"  EHL transactions: {len(ehl_transactions)} lines")
-        print(f"  EHRL transactions: {len(ehrl_transactions)} lines")
+        for k, v in counts.items():
+            print(f"  {k}: {v}")
 
-        post_slack(build_slack_success(
-            len(ehl_invoices), len(ehrl_invoices),
-            len(ehl_transactions), len(ehrl_transactions),
-            run_time,
-        ))
+        post_slack(build_slack_success(counts, run_time))
 
     except Exception as e:
         import traceback

@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests PyNaCl
+          pip install requests PyNaCl python-dateutil
 
       - name: Run data refresh
         env:
