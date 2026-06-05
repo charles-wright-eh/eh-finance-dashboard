@@ -582,7 +582,7 @@ elif page == "Monthly Revenue":
     pivot.loc["TOTAL"] = totals
 
     # Format values
-    display_pivot = pivot.applymap(lambda x: f"£{x:,.0f}" if x != 0 else "—")
+    display_pivot = pivot.map(lambda x: f"£{x:,.0f}" if x != 0 else "—")
     st.dataframe(display_pivot, use_container_width=True)
 
     st.markdown("---")
