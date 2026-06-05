@@ -355,19 +355,38 @@ def fetch_tb_snapshots(access_token, tenant_name, tenant_id):
                 "paymentsOnly": "false",
             })
 
-            # Navigate the report rows to find account 250
+            # Navigate the report rows to find account 250 (Income in Advance)
             balance_250 = 0.0
+            found = False
             for section in report.get("Reports", [{}])[0].get("Rows", []):
+                if found:
+                    break
                 for row in section.get("Rows", []):
                     cells = row.get("Cells", [])
-                    if cells and str(cells[0].get("Value", "")).startswith("250"):
-                        # TB row: [Account, Debit, Credit, YTD Debit, YTD Credit]
+                    if not cells:
+                        continue
+                    # Match on account code in value, attributes, or account name
+                    is_250 = False
+                    for cell in cells:
+                        val = str(cell.get("Value", ""))
+                        if "250" in val or "income in advance" in val.lower():
+                            is_250 = True
+                            break
+                        for attr in cell.get("Attributes", []):
+                            if "250" in str(attr.get("Value", "")):
+                                is_250 = True
+                                break
+                        if is_250:
+                            break
+                    if is_250:
                         try:
                             debit = float(cells[1].get("Value", 0) or 0)
                             credit = float(cells[2].get("Value", 0) or 0)
-                            balance_250 = debit - credit
+                            # 250 is a liability — credit balance = deferred revenue
+                            balance_250 = credit - debit
                         except (ValueError, IndexError):
                             pass
+                        found = True
                         break
 
             snapshots.append({
