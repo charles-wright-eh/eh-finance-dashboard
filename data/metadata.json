@@ -1,11 +1,11 @@
 {
-  "last_refreshed": "2026-06-08 06:41 UTC",
+  "last_refreshed": "2026-06-09 06:07 UTC",
   "EHL revenue lines": 622,
   "EHRL revenue lines": 165,
   "EHGL revenue lines": 1,
-  "EHL invoice lines": 1532,
-  "EHRL invoice lines": 378,
+  "EHL invoice lines": 1535,
+  "EHRL invoice lines": 381,
   "EHGL invoice lines": 50,
   "TB snapshots": 68,
-  "Total rows processed": 30735
+  "Total rows processed": 30751
 }
