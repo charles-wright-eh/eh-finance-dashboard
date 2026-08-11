@@ -269,49 +269,49 @@
     "entity": "EHL",
     "date": "2026-04-30",
     "month": "2026-04-01",
-    "account_250_balance": 37700.65,
+    "account_250_balance": 33720.65,
     "account_115_balance": 34152.5
   },
   {
     "entity": "EHL",
     "date": "2026-05-31",
     "month": "2026-05-01",
-    "account_250_balance": 66066.96,
+    "account_250_balance": 62086.96,
     "account_115_balance": 66507.5
   },
   {
     "entity": "EHL",
     "date": "2026-06-30",
     "month": "2026-06-01",
-    "account_250_balance": 151606.13,
+    "account_250_balance": 147626.13,
     "account_115_balance": 87432.5
   },
   {
     "entity": "EHL",
     "date": "2026-07-31",
     "month": "2026-07-01",
-    "account_250_balance": 44982.82,
+    "account_250_balance": 41002.82,
     "account_115_balance": 45642.5
   },
   {
     "entity": "EHL",
     "date": "2026-08-31",
     "month": "2026-08-01",
-    "account_250_balance": 81862.82,
+    "account_250_balance": 83781.62,
     "account_115_balance": 45642.5
   },
   {
     "entity": "EHL",
     "date": "2026-09-30",
     "month": "2026-09-01",
-    "account_250_balance": 216675.32,
+    "account_250_balance": 218594.12,
     "account_115_balance": 45642.5
   },
   {
     "entity": "EHL",
     "date": "2026-12-31",
     "month": "2026-12-01",
-    "account_250_balance": 351487.82,
+    "account_250_balance": 353406.62,
     "account_115_balance": 45642.5
   },
   {
@@ -444,56 +444,56 @@
     "entity": "EHRL",
     "date": "2026-01-31",
     "month": "2026-01-01",
-    "account_250_balance": 48279.53,
+    "account_250_balance": 48267.25,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-02-28",
     "month": "2026-02-01",
-    "account_250_balance": 80823.76,
+    "account_250_balance": 80816.04,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-03-31",
     "month": "2026-03-01",
-    "account_250_balance": 81038.66,
+    "account_250_balance": 81031.04,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-04-30",
     "month": "2026-04-01",
-    "account_250_balance": 22041.08,
+    "account_250_balance": 22025.23,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-05-31",
     "month": "2026-05-01",
-    "account_250_balance": 57268.72,
+    "account_250_balance": 57257.8,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-06-30",
     "month": "2026-06-01",
-    "account_250_balance": 71805.33,
+    "account_250_balance": 71796.45,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-07-31",
     "month": "2026-07-01",
-    "account_250_balance": 50603.94,
+    "account_250_balance": 50592.11,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-08-31",
     "month": "2026-08-01",
-    "account_250_balance": 56042.65,
+    "account_250_balance": 60465.51,
     "account_115_balance": 0.0
   }
 ]
