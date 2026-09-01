@@ -297,21 +297,21 @@
     "entity": "EHL",
     "date": "2026-08-31",
     "month": "2026-08-01",
-    "account_250_balance": 286345.58,
+    "account_250_balance": 308690.58,
     "account_115_balance": 45642.5
   },
   {
     "entity": "EHL",
     "date": "2026-09-30",
     "month": "2026-09-01",
-    "account_250_balance": 555970.58,
+    "account_250_balance": 578315.58,
     "account_115_balance": 45642.5
   },
   {
     "entity": "EHL",
     "date": "2026-12-31",
     "month": "2026-12-01",
-    "account_250_balance": 825595.58,
+    "account_250_balance": 847940.58,
     "account_115_balance": 45642.5
   },
   {
@@ -444,56 +444,56 @@
     "entity": "EHRL",
     "date": "2026-01-31",
     "month": "2026-01-01",
-    "account_250_balance": 48257.86,
+    "account_250_balance": 48016.19,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-02-28",
     "month": "2026-02-01",
-    "account_250_balance": 80810.09,
+    "account_250_balance": 80657.96,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-03-31",
     "month": "2026-03-01",
-    "account_250_balance": 81025.02,
+    "account_250_balance": 80873.52,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-04-30",
     "month": "2026-04-01",
-    "account_250_balance": 22012.91,
+    "account_250_balance": 21699.15,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-05-31",
     "month": "2026-05-01",
-    "account_250_balance": 57249.24,
+    "account_250_balance": 57032.33,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-06-30",
     "month": "2026-06-01",
-    "account_250_balance": 71789.46,
+    "account_250_balance": 71612.51,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-07-31",
     "month": "2026-07-01",
-    "account_250_balance": 50582.87,
+    "account_250_balance": 50347.6,
     "account_115_balance": 0.0
   },
   {
     "entity": "EHRL",
     "date": "2026-08-31",
     "month": "2026-08-01",
-    "account_250_balance": 60457.32,
+    "account_250_balance": 60249.2,
     "account_115_balance": 0.0
   }
 ]
